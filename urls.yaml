@@ -1,0 +1,11 @@
+http://myapp-development.apps-crc.testing
+
+  oc expose service myapp --name=myapp \
+      --hostname=cotd-testing.apps-crc.testing
+
+
+ oc create dc myapp --image=default-route-openshift-image-registry.apps-crc.testing/development/myapp:promoteQA
+ oc create dc myapp --image=default-route-openshift-image-registry.apps-crc.testing/development/myapp:promotePRD
+
+
+ oc expose service myapp --hostname=cotd-production.apps-crc.testing --name=myapp
