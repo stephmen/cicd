@@ -45,7 +45,19 @@ try{
             }
         }
     } 
-    }     
+    stage('approval') {
+                            timeout(time: 2, unit: 'DAYS') {
+                            input message: "Start first rollout ?"
+                        }
+                            stage('Deploy in Production Image Tag') {
+                                openshift.withCluster() {
+                                openshift.tag( 'development/myapp:latest', 'production/myapp:promotePRD')
+                    } 
+                    }
+            }  
+			
+	
+	}     
           }
           }
     }
