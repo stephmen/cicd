@@ -1,69 +1,60 @@
-node('maven') {
-  stages {
-  stage('test') 
-  {
-  openshiftBuild(namespace: 'development',
-  			    buildConfig: 'myapp',
-			    showBuildLogs: 'true',
-			        waitTime: '3000000')
-  }
-  stage  {
-  openshiftVerifyDeployment(namespace: 'development',
-				       depCfg: 'myapp',
-				       replicaCount:'1',
-				       verifyReplicaCount: 'true',
-				       waitTime: '300000')
-  }
-  stage{
-  openshiftTag(namespace: 'development',
-  			  sourceStream: 'myapp',
-			  sourceTag: 'latest',
-			  destinationStream: 'myapp',
-			  destinationTag: 'promoteQA')
-  
-  openshiftDeploy(namespace: 'testing',
-  			     deploymentConfig: 'myapp',
-			     waitTime: '300000')
-
-  openshiftScale(namespace: 'testing',
-  			     deploymentConfig: 'myapp',
-			     waitTime: '300000',
-			     replicaCount: '2')
-  }
-  stage{
-  openshiftVerifyDeployment(namespace: 'testing',
-				       depCfg: 'myapp',
-				       replicaCount:'2',
-				       verifyReplicaCount: 'true',
-				       waitTime: '300000')
-  
-  stage 'Deploy to production'
-  timeout(time: 2, unit: 'DAYS') {
-      input message: 'Approve to production?'
- }
-
-  openshiftTag(namespace: 'development',
-  			  sourceStream: 'myapp',
-			  sourceTag: 'promoteQA',
-			  destinationStream: 'myapp',
-			  destinationTag: 'promotePRD')
-
-  
-  openshiftDeploy(namespace: 'production',
-  			     deploymentConfig: 'myapp',
-			     waitTime: '300000')
-  
-  openshiftScale(namespace: 'production',
-  			     deploymentConfig: 'myapp',
-			     waitTime: '300000',
-			     replicaCount: '2')
-  }
-  stage{
-  openshiftVerifyDeployment(namespace: 'production',
-				       depCfg: 'myapp',
-				       replicaCount:'2',
-				       verifyReplicaCount: 'true',
-				       waitTime: '300000')
-  }   
-}               
-}
+try{
+    timeout(time: 20, unit: 'MINUTES') {
+    node('maven'){
+        stage('build & deploy in dev'){
+        openshift.withCluster() {
+               openshift.withProject('development') {
+                   def bld = openshift.startBuild('myapp')
+                   bld.untilEach {
+                       return it.object().status.phase == "Running"
+            }
+        }
+    }
+        stage('verify deploy in dev'){
+        openshift.withCluster() {
+                openshift.withProject('development'){
+                    def latestDeploymentVersion = openshift.selector('dc','myapp').object().status.latestVersion
+                    def rc = openshift.selector('rc', "myapp-${latestDeploymentVersion}")
+                    rc.untilEach(1){
+                    def rcMap = it.object()
+                        return (rcMap.status.replicas.equals(rcMap.status.readyReplicas))
+            }
+        }
+    } 
+    stage('deploy in test Image Tag') {
+            openshift.withCluster() {
+              
+               openshift.tag( 'development/myapp:latest', 'development/myapp:promoteQA')
+              
+            }
+     stage('deploy in test Rollout') {
+            openshift.withCluster() {
+              openshift.withProject('testing') {
+                def dc = openshift.selector('dc', 'myapp')
+                dc.rollout().latest()
+              }
+            }
+     stage('verify deploy in testing'){
+        openshift.withCluster() {
+                openshift.withProject('testing'){
+                    def latestDeploymentVersion = openshift.selector('dc','myapp').object().status.latestVersion
+                    def rc = openshift.selector('rc', "myapp-${latestDeploymentVersion}")
+                    rc.untilEach(1){
+                    def rcMap = it.object()
+                        return (rcMap.status.replicas.equals(rcMap.status.readyReplicas))
+            }
+        }
+    } 
+    }     
+          }
+          }
+    }
+    }
+    }
+    }
+}catch (err) {
+   echo "in catch block"
+   echo "Caught: ${err}"
+   currentBuild.result = 'FAILURE'
+   throw err
+}  
