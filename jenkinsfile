@@ -23,10 +23,9 @@ try{
     } 
     stage('deploy in test Image Tag') {
             openshift.withCluster() {
+            openshift.tag( 'development/myapp:latest', 'development/myapp:promoteQA')
               
-               openshift.tag( 'development/myapp:latest', 'development/myapp:promoteQA')
-              
-            }
+}
      stage('deploy in test Rollout') {
             openshift.withCluster() {
               openshift.withProject('testing') {
@@ -47,19 +46,37 @@ try{
     } 
     stage('approval') {
                             timeout(time: 2, unit: 'DAYS') {
-                            input message: "Start first rollout ?"
+                            input message: "Start Production Rollout ?"
                         }
                             stage('Deploy in Production Image Tag') {
                                 openshift.withCluster() {
-                                openshift.tag( 'development/myapp:latest', 'production/myapp:promotePRD')
+                                openshift.tag( 'development/myapp:latest', 'development/myapp:promotePRD')
                     } 
                     }
+                                stage('Deploy in Production Rollout') {
+                                openshift.withCluster() {
+                                openshift.withProject('production') {
+                                def dc = openshift.selector('dc', 'myapp')
+                                dc.rollout().latest()
+              }
+            }
+     stage('Verify Deployment in Production'){
+        openshift.withCluster() {
+                openshift.withProject('production'){
+                    def latestDeploymentVersion = openshift.selector('dc','myapp').object().status.latestVersion
+                    def rc = openshift.selector('rc', "myapp-${latestDeploymentVersion}")
+                    rc.untilEach(1){
+                    def rcMap = it.object()
+                        return (rcMap.status.replicas.equals(rcMap.status.readyReplicas))
+            }
+        }
             }  
-			
-	
 	}     
           }
           }
+    }
+    }
+    }
     }
     }
     }
@@ -69,4 +86,5 @@ try{
    echo "Caught: ${err}"
    currentBuild.result = 'FAILURE'
    throw err
-}  
+}
+ 
