@@ -1,0 +1,70 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  creationTimestamp: "2020-04-25T17:16:00Z"
+  generation: 18
+  name: myapp
+  namespace: testing
+  resourceVersion: "1208593"
+  selfLink: /apis/apps.openshift.io/v1/namespaces/testing/deploymentconfigs/myapp
+  uid: 6f85cccf-8718-11ea-8c6a-0a580a8001c6
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    deployment-config.name: myapp
+  strategy:
+    activeDeadlineSeconds: 21600
+    resources: {}
+    rollingParams:
+      intervalSeconds: 1
+      maxSurge: 25%
+      maxUnavailable: 25%
+      timeoutSeconds: 600
+      updatePeriodSeconds: 1
+    type: Rolling
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        deployment-config.name: myapp
+    spec:
+      containers:
+      - image: image-registry.openshift-image-registry.svc:5000/development/myapp:promoteQA
+        imagePullPolicy: Always
+        name: default-container
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+  test: false
+  triggers:
+  - type: ConfigChange
+status:
+  availableReplicas: 1
+  conditions:
+  - lastTransitionTime: "2020-05-02T16:49:43Z"
+    lastUpdateTime: "2020-05-02T16:49:43Z"
+    message: Deployment config has minimum availability.
+    status: "True"
+    type: Available
+  - lastTransitionTime: "2020-05-02T16:52:51Z"
+    lastUpdateTime: "2020-05-02T16:52:54Z"
+    message: replication controller "myapp-18" successfully rolled out
+    reason: NewReplicationControllerAvailable
+    status: "True"
+    type: Progressing
+  details:
+    causes:
+    - type: Manual
+    message: manual change
+  latestVersion: 18
+  observedGeneration: 18
+  readyReplicas: 1
+  replicas: 1
+  unavailableReplicas: 0
+  updatedReplicas: 1
