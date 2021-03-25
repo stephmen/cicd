@@ -1,0 +1,14 @@
+apiVersion: v1
+data:
+  .env: |
+    variable1: value1
+    PRODENDPOINT="http://apollo-backend-development.apps-crc.testing"
+    endpoint="http://apollo-backend-development.apps-crc.testing"
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2020-05-19T18:38:07Z"
+  name: test-config
+  namespace: development
+  resourceVersion: "3285595"
+  selfLink: /api/v1/namespaces/development/configmaps/test-config
+  uid: e1e43576-99ff-11ea-a2a1-0ef0e3c74fbe

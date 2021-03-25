@@ -1,0 +1,48 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  annotations:
+    openshift.io/generated-by: OpenShiftNewApp
+  creationTimestamp: "2020-05-07T17:18:32Z"
+  labels:
+    app: frontend
+  name: frontend
+  namespace: development
+  resourceVersion: "2508900"
+  selfLink: /apis/build.openshift.io/v1/namespaces/development/buildconfigs/frontend
+  uid: c704416b-9086-11ea-8022-0a580a800100
+spec:
+  failedBuildsHistoryLimit: 5
+  nodeSelector: null
+  output:
+    to:
+      kind: ImageStreamTag
+      name: frontend:latest
+  postCommit: {}
+  resources: {}
+  runPolicy: Serial
+  source:
+    git:
+      uri: https://github.com/stephmen/Frontend
+    type: Git
+  strategy:
+    sourceStrategy:
+      from:
+        kind: ImageStreamTag
+        name: nodejs:latest
+        namespace: openshift
+    type: Source
+  successfulBuildsHistoryLimit: 5
+  triggers:
+  - github:
+      secret: g62NcJ3-o5iT6jG1mnaM
+    type: GitHub
+  - generic:
+      secret: Z_V7pK7BDdL7vonSp1Za
+    type: Generic
+  - type: ConfigChange
+  - imageChange:
+      lastTriggeredImageID: image-registry.openshift-image-registry.svc:5000/openshift/nodejs@sha256:74a3ef2964efc03dfc239da3f09691b720ce54ff4bb47588864adb222133f0fc
+    type: ImageChange
+status:
+  lastVersion: 16

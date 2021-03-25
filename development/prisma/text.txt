@@ -1,0 +1,3 @@
+http://prisma-development.apps.ocp.mpi.mb.local, prisma-development.apps.ocp.mpi.mb.local, http://172.25.16.144:4466, 172.30.52.150, apollo-backend-development.apps.ocp.mpi.mb.local, http://apollo-backend-development.apps.ocp.mpi.mb.local, 172.25.128.169, frontend-development.apps.ocp.mpi.mb.local, http://frontend-development.apps.ocp.mpi.mb.local, http:checkout.stripe.com/
+
+apps.ocp.mpi.mb.local

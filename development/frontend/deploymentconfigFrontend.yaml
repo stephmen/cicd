@@ -1,0 +1,110 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  annotations:
+    app.openshift.io/connects-to: apollo-backend
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"apps.openshift.io/v1","kind":"DeploymentConfig","metadata":{"annotations":{"app.openshift.io/connects-to":"apollo-backend","openshift.io/generated-by":"OpenShiftNewApp"},"creationTimestamp":"2020-05-07T17:18:32Z","generation":71,"labels":{"app":"frontend"},"name":"frontend","namespace":"development","resourceVersion":"2931011","selfLink":"/apis/apps.openshift.io/v1/namespaces/development/deploymentconfigs/frontend","uid":"c708d120-9086-11ea-8022-0a580a800100"},"spec":{"replicas":1,"revisionHistoryLimit":10,"selector":{"app":"frontend","deploymentconfig":"frontend"},"strategy":{"activeDeadlineSeconds":21600,"resources":{},"rollingParams":{"intervalSeconds":1,"maxSurge":"25%","maxUnavailable":"25%","timeoutSeconds":600,"updatePeriodSeconds":1},"type":"Rolling"},"template":{"metadata":{"annotations":{"openshift.io/generated-by":"OpenShiftNewApp"},"creationTimestamp":null,"labels":{"app":"frontend","deploymentconfig":"frontend"}},"spec":{"containers":[{"env":[{"name":"prodEndpoint","value":"http://apollo-backend-development.apps-crc.testing"},{"name":"endpoint","value":"http://apollo-backend-development.apps-crc.testing"}],"image":"image-registry.openshift-image-registry.svc:5000/development/frontend@sha256:3248aa00f04d9db4aac2f1b7ae233df8037e3dd5630b6a954e27d9acd557219f","imagePullPolicy":"Always","name":"frontend","ports":[{"containerPort":8080,"protocol":"TCP"}],"resources":{},"terminationMessagePath":"/dev/termination-log","terminationMessagePolicy":"File"}],"dnsPolicy":"ClusterFirst","restartPolicy":"Always","schedulerName":"default-scheduler","securityContext":{},"terminationGracePeriodSeconds":30,"volumeMounts":[{"mountPath":"your/path/to/store/the/file","name":"environment-variables","readOnly":true}]}},"test":false,"triggers":[{"type":"ConfigChange"},{"imageChangeParams":{"automatic":true,"containerNames":["frontend"],"from":{"kind":"ImageStreamTag","name":"frontend:latest","namespace":"development"},"lastTriggeredImage":"image-registry.openshift-image-registry.svc:5000/development/frontend@sha256:3248aa00f04d9db4aac2f1b7ae233df8037e3dd5630b6a954e27d9acd557219f"},"type":"ImageChange"}]},"status":{"availableReplicas":1,"conditions":[{"lastTransitionTime":"2020-05-17T11:24:30Z","lastUpdateTime":"2020-05-17T11:24:30Z","message":"Deployment config has minimum availability.","status":"True","type":"Available"},{"lastTransitionTime":"2020-05-17T17:37:14Z","lastUpdateTime":"2020-05-17T17:37:16Z","message":"replication controller \"frontend-69\" successfully rolled out","reason":"NewReplicationControllerAvailable","status":"True","type":"Progressing"}],"details":{"causes":[{"type":"Manual"}],"message":"manual change"},"latestVersion":69,"observedGeneration":71,"readyReplicas":1,"replicas":1,"unavailableReplicas":0,"updatedReplicas":1}}
+    openshift.io/generated-by: OpenShiftNewApp
+  creationTimestamp: "2020-05-07T17:18:32Z"
+  generation: 123
+  labels:
+    app: frontend
+  name: frontend
+  namespace: development
+  resourceVersion: "4299603"
+  selfLink: /apis/apps.openshift.io/v1/namespaces/development/deploymentconfigs/frontend
+  uid: c708d120-9086-11ea-8022-0a580a800100
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    app: frontend
+    deploymentconfig: frontend
+  strategy:
+    activeDeadlineSeconds: 21600
+    resources: {}
+    rollingParams:
+      intervalSeconds: 1
+      maxSurge: 25%
+      maxUnavailable: 25%
+      timeoutSeconds: 600
+      updatePeriodSeconds: 1
+    type: Rolling
+  template:
+    metadata:
+      annotations:
+        openshift.io/generated-by: OpenShiftNewApp
+      creationTimestamp: null
+      labels:
+        app: frontend
+        deploymentconfig: frontend
+    spec:
+      containers:
+      - env:
+        - name: PRODENDPOINT
+          value: http://apollo-backend-development.apps-crc.testing
+        - name: ENDPOINT
+          value: http://apollo-backend-development.apps-crc.testing
+        image: image-registry.openshift-image-registry.svc:5000/development/frontend@sha256:f3bcd079554860c25b293d3da792fc725d18ef842a1cc5e1def51e19e06f8a35
+        imagePullPolicy: Always
+        name: frontend
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /opt/app-root/src/config
+          name: app-config
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: test-config
+        name: app-config
+  test: false
+  triggers:
+  - type: ConfigChange
+  - imageChangeParams:
+      automatic: true
+      containerNames:
+      - frontend
+      from:
+        kind: ImageStreamTag
+        name: frontend:latest
+        namespace: development
+      lastTriggeredImage: image-registry.openshift-image-registry.svc:5000/development/frontend@sha256:f3bcd079554860c25b293d3da792fc725d18ef842a1cc5e1def51e19e06f8a35
+    type: ImageChange
+status:
+  availableReplicas: 0
+  conditions:
+  - lastTransitionTime: "2020-06-02T12:35:15Z"
+    lastUpdateTime: "2020-06-02T12:35:15Z"
+    message: Deployment config does not have minimum availability.
+    status: "False"
+    type: Available
+  - lastTransitionTime: "2020-06-02T12:56:36Z"
+    lastUpdateTime: "2020-06-02T12:56:36Z"
+    message: replication controller "frontend-121" has failed progressing
+    reason: ProgressDeadlineExceeded
+    status: "False"
+    type: Progressing
+  details:
+    causes:
+    - imageTrigger:
+        from:
+          kind: DockerImage
+          name: image-registry.openshift-image-registry.svc:5000/development/frontend@sha256:f3bcd079554860c25b293d3da792fc725d18ef842a1cc5e1def51e19e06f8a35
+      type: ImageChange
+    message: image change
+  latestVersion: 121
+  observedGeneration: 123
+  replicas: 0
+  unavailableReplicas: 0
+  updatedReplicas: 0

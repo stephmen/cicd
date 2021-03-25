@@ -1,29 +1,29 @@
 try{
     timeout(time: 20, unit: 'MINUTES') {
     node('maven'){
-        stage('build & deploy in dev'){
+        stage('Build Image from GitHub & Deploy in development'){
         openshift.withCluster() {
                openshift.withProject('development') {
-                   def bld = openshift.startBuild('myapp')
-                   bld.untilEach {
-                       return it.object().status.phase == "Running"
+                   def bld = openshift.startBuild('apollo-backend')
+                   bld.untilEach(1) {
+                       return it.object().status.phase == "Complete"
             }
         }
-    }
-        stage('verify deploy in dev'){
+    } 
+        stage('Validate deployment in development'){
         openshift.withCluster() {
                 openshift.withProject('development'){
-                    def latestDeploymentVersion = openshift.selector('dc','myapp').object().status.latestVersion
-                    def rc = openshift.selector('rc', "myapp-${latestDeploymentVersion}")
+                    def latestDeploymentVersion = openshift.selector('dc','apollo-backend').object().status.latestVersion
+                    def rc = openshift.selector('rc', "apollo-backend-${latestDeploymentVersion}")
                     rc.untilEach(1){
                     def rcMap = it.object()
                         return (rcMap.status.replicas.equals(rcMap.status.readyReplicas))
             }
         }
     } 
-    stage('deploy in test Image Tag') {
+    stage('Add tag prmoteQA to latest Image') {
             openshift.withCluster() {
-            openshift.tag( 'development/myapp:latest', 'development/myapp:promoteQA')
+            openshift.tag( 'development/apollo-backend:latest', 'development/apollo-backend:apollo-backendQA')
               
 }
     stage('approval') {
@@ -33,16 +33,17 @@ try{
      stage('deploy in test Rollout') {
             openshift.withCluster() {
               openshift.withProject('testing') {
-                def dc = openshift.selector('dc', 'myapp')
+                def dc = openshift.selector('dc', 'apollo-backend')
                 dc.rollout().latest()
               }
             }
+    }
      stage('verify deploy in testing'){
         openshift.withCluster() {
                 openshift.withProject('testing'){
-                    def latestDeploymentVersion = openshift.selector('dc','myapp').object().status.latestVersion
-                    def rc = openshift.selector('rc', "myapp-${latestDeploymentVersion}")
-                    rc.untilEach(1){
+                    def latestDeploymentVersion = openshift.selector('dc','apollo-backend').object().status.latestVersion
+                    def rc = openshift.selector('rc', "apollo-backend-${latestDeploymentVersion}")
+                    rc.untilEach(){
                     def rcMap = it.object()
                         return (rcMap.status.replicas.equals(rcMap.status.readyReplicas))
             }
@@ -56,21 +57,21 @@ try{
                         }
                             stage('Deploy in Production Image Tag') {
                                 openshift.withCluster() {
-                                openshift.tag( 'development/myapp:latest', 'development/myapp:promotePRD')
+                                openshift.tag( 'development/apollo-backend:latest', 'development/apollo-backend:apollo-backendPRD')
                     } 
                     }
                                 stage('Deploy in Production Rollout') {
                                 openshift.withCluster() {
                                 openshift.withProject('production') {
-                                def dc = openshift.selector('dc', 'myapp')
+                                def dc = openshift.selector('dc', 'apollo-backend')
                                 dc.rollout().latest()
               }
             }
      stage('Verify Deployment in Production'){
         openshift.withCluster() {
                 openshift.withProject('production'){
-                    def latestDeploymentVersion = openshift.selector('dc','myapp').object().status.latestVersion
-                    def rc = openshift.selector('rc', "myapp-${latestDeploymentVersion}")
+                    def latestDeploymentVersion = openshift.selector('dc','apollo-backend').object().status.latestVersion
+                    def rc = openshift.selector('rc', "apollo-backend-${latestDeploymentVersion}")
                     rc.untilEach(1){
                     def rcMap = it.object()
                         return (rcMap.status.replicas.equals(rcMap.status.readyReplicas))
@@ -80,7 +81,6 @@ try{
 	}     
           }
           }
-    }
     }
     }
     }

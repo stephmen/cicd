@@ -1,0 +1,9 @@
+ ** WARNING: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine
+ **          See http://dochub.mongodb.org/core/prodnotes-filesystem
+ wiredtiger_open config: create,cache_size=15567M,cache_overflow=(file_max=0M),session_max=20000,eviction=(threads_min=4,threads_max=4),config_base=false,statistics=(fast),compatibility=(release="3.0",require_max="3.0"),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000),statistics_log=(wait=0),verbose=(recovery_progress),
+ WiredTiger error (28) [1616117918:95012][1:0x7f40096fda40], connection: __posix_file_write, 579: /data/db/journal/WiredTigerTmplog.0000000001: handle-write: pwrite: failed to write 128 bytes at offset 0: No space left on device Raw: [1616117918:95012][1:0x7f40096fda40], connection: __posix_file_write, 579: /data/db/journal/WiredTigerTmplog.0000000001: handle-write: pwrite: failed to write 128 bytes at offset 0: No space left on device
+ WiredTiger error (28) [1616117918:95054][1:0x7f40096fda40], connection: __log_fs_write, 212: journal/WiredTigerTmplog.0000000001: fatal log failure: No space left on device Raw: [1616117918:95054][1:0x7f40096fda40], connection: __log_fs_write, 212: journal/WiredTigerTmplog.0000000001: fatal log failure: No space left on device
+ WiredTiger error (-31804) [1616117918:95061][1:0x7f40096fda40], connection: __wt_panic, 523: the process must exit and restart: WT_PANIC: WiredTiger library panic Raw: [1616117918:95061][1:0x7f40096fda40], connection: __wt_panic, 523: the process must exit and restart: WT_PANIC: WiredTiger library panic
+ Fatal Assertion 50853 at src/mongo/db/storage/wiredtiger/wiredtiger_util.cpp 420
+ \n\n***aborting after fassert() failure\n\n
+ Got signal: 6 (Aborted).

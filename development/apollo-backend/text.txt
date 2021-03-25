@@ -1,0 +1,53 @@
+2021-03-17T11:06:25.409+0000 I CONTROL  [initandlisten] MongoDB starting : pid=1 port=27017 dbpath=/data/db 64-bit host=mongo-1-4fsgb
+2021-03-17T11:06:25.409+0000 I CONTROL  [initandlisten] db version v3.6.22
+2021-03-17T11:06:25.409+0000 I CONTROL  [initandlisten] git version: 62d9f36d148e4dacfec1ca8fcb110f1cc410336f
+2021-03-17T11:06:25.409+0000 I CONTROL  [initandlisten] OpenSSL version: OpenSSL 1.0.2g  1 Mar 2016
+2021-03-17T11:06:25.409+0000 I CONTROL  [initandlisten] allocator: tcmalloc
+2021-03-17T11:06:25.409+0000 I CONTROL  [initandlisten] modules: none
+2021-03-17T11:06:25.409+0000 I CONTROL  [initandlisten] build environment:
+2021-03-17T11:06:25.409+0000 I CONTROL  [initandlisten]     distmod: ubuntu1604
+2021-03-17T11:06:25.409+0000 I CONTROL  [initandlisten]     distarch: x86_64
+2021-03-17T11:06:25.409+0000 I CONTROL  [initandlisten]     target_arch: x86_64
+2021-03-17T11:06:25.409+0000 I CONTROL  [initandlisten] options: { net: { bindIpAll: true }, security: { authorization: "enabled" } }
+2021-03-17T11:06:25.410+0000 I STORAGE  [initandlisten] 
+2021-03-17T11:06:25.410+0000 I STORAGE  [initandlisten] ** WARNING: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine
+2021-03-17T11:06:25.410+0000 I STORAGE  [initandlisten] **          See http://dochub.mongodb.org/core/prodnotes-filesystem
+2021-03-17T11:06:25.410+0000 I STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=15567M,cache_overflow=(file_max=0M),session_max=20000,eviction=(threads_min=4,threads_max=4),config_base=false,statistics=(fast),compatibility=(release="3.0",require_max="3.0"),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000),statistics_log=(wait=0),verbose=(recovery_progress),
+2021-03-17T11:06:25.922+0000 E STORAGE  [initandlisten] WiredTiger error (28) [1615979185:922183][1:0x7f6b9ffa6a40], connection: __posix_file_write, 579: /data/db/journal/WiredTigerTmplog.0000000001: handle-write: pwrite: failed to write 128 bytes at offset 0: No space left on device Raw: [1615979185:922183][1:0x7f6b9ffa6a40], connection: __posix_file_write, 579: /data/db/journal/WiredTigerTmplog.0000000001: handle-write: pwrite: failed to write 128 bytes at offset 0: No space left on device
+2021-03-17T11:06:25.922+0000 E STORAGE  [initandlisten] WiredTiger error (28) [1615979185:922224][1:0x7f6b9ffa6a40], connection: __log_fs_write, 212: journal/WiredTigerTmplog.0000000001: fatal log failure: No space left on device Raw: [1615979185:922224][1:0x7f6b9ffa6a40], connection: __log_fs_write, 212: journal/WiredTigerTmplog.0000000001: fatal log failure: No space left on device
+2021-03-17T11:06:25.922+0000 E STORAGE  [initandlisten] WiredTiger error (-31804) [1615979185:922231][1:0x7f6b9ffa6a40], connection: __wt_panic, 523: the process must exit and restart: WT_PANIC: WiredTiger library panic Raw: [1615979185:922231][1:0x7f6b9ffa6a40], connection: __wt_panic, 523: the process must exit and restart: WT_PANIC: WiredTiger library panic
+2021-03-17T11:06:25.922+0000 F -        [initandlisten] Fatal Assertion 50853 at src/mongo/db/storage/wiredtiger/wiredtiger_util.cpp 420
+2021-03-17T11:06:25.922+0000 F -        [initandlisten] \n\n***aborting after fassert() failure\n\n
+2021-03-17T11:06:25.937+0000 F -        [initandlisten] Got signal: 6 (Aborted).
+
+ 0x5571d099cfc1 0x5571d099c1d9 0x5571d099c6bd 0x7f6b9e98b390 0x7f6b9e5e5438 0x7f6b9e5e703a 0x5571cf04667c 0x5571cf126f26 0x5571cf198789 0x5571cefe23f4 0x5571cefe2814 0x5571cf228f91 0x5571cf22957e 0x5571cf229a40 0x5571cf229deb 0x5571cf22bd4e 0x5571cf1f97ad 0x5571cf13c28b 0x5571cf138d3f 0x5571cf105f89 0x5571cf0e7f10 0x5571cf2f70e3 0x5571cf0c382f 0x5571cf0c694c 0x5571cf048469 0x7f6b9e5d0840 0x5571cf0aeaa9
+----- BEGIN BACKTRACE -----
+{"backtrace":[{"b":"5571CE6A7000","o":"22F5FC1","s":"_ZN5mongo15printStackTraceERSo"},{"b":"5571CE6A7000","o":"22F51D9"},{"b":"5571CE6A7000","o":"22F56BD"},{"b":"7F6B9E97A000","o":"11390"},{"b":"7F6B9E5B0000","o":"35438","s":"gsignal"},{"b":"7F6B9E5B0000","o":"3703A","s":"abort"},{"b":"5571CE6A7000","o":"99F67C","s":"_ZN5mongo32fassertFailedNoTraceWithLocationEiPKcj"},{"b":"5571CE6A7000","o":"A7FF26"},{"b":"5571CE6A7000","o":"AF1789"},{"b":"5571CE6A7000","o":"93B3F4","s":"__wt_err_func"},{"b":"5571CE6A7000","o":"93B814","s":"__wt_panic"},{"b":"5571CE6A7000","o":"B81F91"},{"b":"5571CE6A7000","o":"B8257E","s":"__wt_log_fill"},{"b":"5571CE6A7000","o":"B82A40","s":"__wt_log_allocfile"},{"b":"5571CE6A7000","o":"B82DEB"},{"b":"5571CE6A7000","o":"B84D4E","s":"__wt_log_open"},{"b":"5571CE6A7000","o":"B527AD","s":"__wt_logmgr_create"},{"b":"5571CE6A7000","o":"A9528B","s":"__wt_connection_workers"},{"b":"5571CE6A7000","o":"A91D3F","s":"wiredtiger_open"},{"b":"5571CE6A7000","o":"A5EF89","s":"_ZN5mongo18WiredTigerKVEngineC2ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES8_PNS_11ClockSourceES8_mmbbbb"},{"b":"5571CE6A7000","o":"A40F10"},{"b":"5571CE6A7000","o":"C500E3","s":"_ZN5mongo20ServiceContextMongoD29initializeGlobalStorageEngineEv"},{"b":"5571CE6A7000","o":"A1C82F"},{"b":"5571CE6A7000","o":"A1F94C","s":"_ZN5mongo11mongoDbMainEiPPcS1_"},{"b":"5571CE6A7000","o":"9A1469","s":"main"},{"b":"7F6B9E5B0000","o":"20840","s":"__libc_start_main"},{"b":"5571CE6A7000","o":"A07AA9","s":"_start"}],"processInfo":{ "mongodbVersion" : "3.6.22", "gitVersion" : "62d9f36d148e4dacfec1ca8fcb110f1cc410336f", "compiledModules" : [], "uname" : { "sysname" : "Linux", "release" : "4.18.0-193.29.1.el8_2.x86_64", "version" : "#1 SMP Thu Oct 22 10:09:53 EDT 2020", "machine" : "x86_64" }, "somap" : [ { "b" : "5571CE6A7000", "elfType" : 3, "buildId" : "BD2D31CC5743F17CBEEF9367676DE388FF750D8E" }, { "b" : "7FFE4FBC2000", "elfType" : 3, "buildId" : "AD1FBAE3D4DC06916E65988912D53F05F8295DE5" }, { "b" : "7F6B9FB6F000", "path" : "/lib/x86_64-linux-gnu/libresolv.so.2", "elfType" : 3, "buildId" : "683BB174D849C94BACD676385382A96336F2807F" }, { "b" : "7F6B9F72A000", "path" : "/lib/x86_64-linux-gnu/libcrypto.so.1.0.0", "elfType" : 3, "buildId" : "8AFAB736055776195D18C1B2343F1C589110527E" }, { "b" : "7F6B9F4C2000", "path" : "/lib/x86_64-linux-gnu/libssl.so.1.0.0", "elfType" : 3, "buildId" : "6D45140E39371120043FAAE6112CE87ACC80A5E8" }, { "b" : "7F6B9F2BE000", "path" : "/lib/x86_64-linux-gnu/libdl.so.2", "elfType" : 3, "buildId" : "B72852F16AEE2A6EE4DAA94C4057623427A8E17F" }, { "b" : "7F6B9F0B6000", "path" : "/lib/x86_64-linux-gnu/librt.so.1", "elfType" : 3, "buildId" : "3828BFB25DE953DF34817895B3A065E9D57C32A3" }, { "b" : "7F6B9EDAD000", "path" : "/lib/x86_64-linux-gnu/libm.so.6", "elfType" : 3, "buildId" : "6E218A55DB841085AD021AFE2562D1557A5A0D85" }, { "b" : "7F6B9EB97000", "path" : "/lib/x86_64-linux-gnu/libgcc_s.so.1", "elfType" : 3, "buildId" : "68220AE2C65D65C1B6AAA12FA6765A6EC2F5F434" }, { "b" : "7F6B9E97A000", "path" : "/lib/x86_64-linux-gnu/libpthread.so.0", "elfType" : 3, "buildId" : "3DB0B0EE6244F5B89AB1D535F91B17D162CC1701" }, { "b" : "7F6B9E5B0000", "path" : "/lib/x86_64-linux-gnu/libc.so.6", "elfType" : 3, "buildId" : "C4FD86EC1EED57A09C79CE601F6C6E3796F574DF" }, { "b" : "7F6B9FD8A000", "path" : "/lib64/ld-linux-x86-64.so.2", "elfType" : 3, "buildId" : "929894755069C71880927EEE9DC0D5C501616531" } ] }}
+ mongod(_ZN5mongo15printStackTraceERSo+0x41) [0x5571d099cfc1]
+ mongod(+0x22F51D9) [0x5571d099c1d9]
+ mongod(+0x22F56BD) [0x5571d099c6bd]
+ libpthread.so.0(+0x11390) [0x7f6b9e98b390]
+ libc.so.6(gsignal+0x38) [0x7f6b9e5e5438]
+ libc.so.6(abort+0x16A) [0x7f6b9e5e703a]
+ mongod(_ZN5mongo32fassertFailedNoTraceWithLocationEiPKcj+0x0) [0x5571cf04667c]
+ mongod(+0xA7FF26) [0x5571cf126f26]
+ mongod(+0xAF1789) [0x5571cf198789]
+ mongod(__wt_err_func+0x90) [0x5571cefe23f4]
+ mongod(__wt_panic+0x3F) [0x5571cefe2814]
+ mongod(+0xB81F91) [0x5571cf228f91]
+ mongod(__wt_log_fill+0x3E) [0x5571cf22957e]
+ mongod(__wt_log_allocfile+0x430) [0x5571cf229a40]
+ mongod(+0xB82DEB) [0x5571cf229deb]
+ mongod(__wt_log_open+0x5BE) [0x5571cf22bd4e]
+ mongod(__wt_logmgr_create+0x30D) [0x5571cf1f97ad]
+ mongod(__wt_connection_workers+0x2B) [0x5571cf13c28b]
+ mongod(wiredtiger_open+0x1B7F) [0x5571cf138d3f]
+ mongod(_ZN5mongo18WiredTigerKVEngineC2ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES8_PNS_11ClockSourceES8_mmbbbb+0x8A9) [0x5571cf105f89]
+ mongod(+0xA40F10) [0x5571cf0e7f10]
+ mongod(_ZN5mongo20ServiceContextMongoD29initializeGlobalStorageEngineEv+0x273) [0x5571cf2f70e3]
+ mongod(+0xA1C82F) [0x5571cf0c382f]
+ mongod(_ZN5mongo11mongoDbMainEiPPcS1_+0x26C) [0x5571cf0c694c]
+ mongod(main+0x9) [0x5571cf048469]
+ libc.so.6(__libc_start_main+0xF0) [0x7f6b9e5d0840]
+ mongod(_start+0x29) [0x5571cf0aeaa9]
+-----  END BACKTRACE  -----

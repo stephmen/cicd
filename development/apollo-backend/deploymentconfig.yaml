@@ -1,0 +1,101 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  annotations:
+    app.openshift.io/connects-to: prisma,frontend
+    openshift.io/generated-by: OpenShiftNewApp
+  creationTimestamp: "2020-05-07T17:31:05Z"
+  generation: 12
+  labels:
+    app: apollo-backend
+  name: apollo-backend
+  namespace: development
+  resourceVersion: "2036704"
+  selfLink: /apis/apps.openshift.io/v1/namespaces/development/deploymentconfigs/apollo-backend
+  uid: 876ee4f1-9088-11ea-8022-0a580a800100
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    app: apollo-backend
+    deploymentconfig: apollo-backend
+  strategy:
+    activeDeadlineSeconds: 21600
+    resources: {}
+    rollingParams:
+      intervalSeconds: 1
+      maxSurge: 25%
+      maxUnavailable: 25%
+      timeoutSeconds: 600
+      updatePeriodSeconds: 1
+    type: Rolling
+  template:
+    metadata:
+      annotations:
+        openshift.io/generated-by: OpenShiftNewApp
+      creationTimestamp: null
+      labels:
+        app: apollo-backend
+        deploymentconfig: apollo-backend
+    spec:
+      containers:
+      - env:
+        - name: PRISMA_ENDPOINT
+          value: '"http://172.25.206.52:4466"'
+        - name: PRISMA_SECRET
+          value: prisma
+        - name: APP_SECRET
+          value: prisma
+        - name: PORT
+          value: "4444"
+        name: apollo-backend
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+  test: false
+  triggers:
+  - type: ConfigChange
+  - imageChangeParams:
+      automatic: true
+      containerNames:
+      - apollo-backend
+      from:
+        kind: ImageStreamTag
+        name: apollo-backend:latest
+        namespace: development
+     
+status:
+  availableReplicas: 0
+  conditions:
+  - lastTransitionTime: "2020-05-09T15:12:25Z"
+    lastUpdateTime: "2020-05-09T15:12:31Z"
+    message: replication controller "apollo-backend-11" successfully rolled out
+    reason: NewReplicationControllerAvailable
+    status: "True"
+    type: Progressing
+  - lastTransitionTime: "2020-05-09T15:23:34Z"
+    lastUpdateTime: "2020-05-09T15:23:34Z"
+    message: Deployment config does not have minimum availability.
+    status: "False"
+    type: Available
+  details:
+    causes:
+    - imageTrigger:
+        from:
+          kind: DockerImage
+          name: image-registry.openshift-image-registry.svc:5000/development/apollo-backend@sha256:2585d28911caac8edb018d8fd3076ca8e6ff65a9920cc10303c56875ed0ccc57
+      type: ImageChange
+    message: image change
+  latestVersion: 11
+  observedGeneration: 12
+  replicas: 1
+  unavailableReplicas: 1
+  updatedReplicas: 1

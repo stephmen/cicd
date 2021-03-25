@@ -1,0 +1,42 @@
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  creationTimestamp: "2020-05-01T19:12:10Z"
+  generation: 3
+  name: myapp
+  namespace: production
+  resourceVersion: "1176458"
+  selfLink: /apis/image.openshift.io/v1/namespaces/production/imagestreams/myapp
+  uid: a84f7307-8bdf-11ea-8820-0a580a800185
+spec:
+  lookupPolicy:
+    local: false
+  tags:
+  - annotations: null
+    from:
+      kind: ImageStreamImage
+      name: myapp@sha256:3f36a81eaba9566022b199eaf4d030e4179de2dff04cc4a473fb49ff0c3955ee
+      namespace: development
+    generation: 3
+    importPolicy: {}
+    name: promotePRD
+    referencePolicy:
+      type: Source
+status:
+  dockerImageRepository: image-registry.openshift-image-registry.svc:5000/production/myapp
+  publicDockerImageRepository: default-route-openshift-image-registry.apps-crc.testing/production/myapp
+  tags:
+  - items:
+    - created: "2020-05-01T20:19:26Z"
+      dockerImageReference: image-registry.openshift-image-registry.svc:5000/production/myapp@sha256:3f36a81eaba9566022b199eaf4d030e4179de2dff04cc4a473fb49ff0c3955ee
+      generation: 3
+      image: sha256:3f36a81eaba9566022b199eaf4d030e4179de2dff04cc4a473fb49ff0c3955ee
+    - created: "2020-05-01T19:50:18Z"
+      dockerImageReference: image-registry.openshift-image-registry.svc:5000/production/myapp@sha256:8ce080fe949ffcf3ab43b2b06097daea51309134c3b6c50e2e81b46b635e6c0d
+      generation: 2
+      image: sha256:8ce080fe949ffcf3ab43b2b06097daea51309134c3b6c50e2e81b46b635e6c0d
+    - created: "2020-05-01T19:12:10Z"
+      dockerImageReference: image-registry.openshift-image-registry.svc:5000/production/myapp@sha256:2b09635a5e976ed2f7cb32423509f7ed784657df609080323ad93795f59722fa
+      generation: 1
+      image: sha256:2b09635a5e976ed2f7cb32423509f7ed784657df609080323ad93795f59722fa
+    tag: promotePRD

@@ -1,0 +1,619 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      k8s.v1.cni.cncf.io/networks-status: ""
+      openshift.io/deployment-config.name: myapp
+      openshift.io/deployment.name: myapp-32
+      openshift.io/scc: restricted
+    creationTimestamp: "2020-05-03T21:55:48Z"
+    labels:
+      openshift.io/deployer-pod-for.name: myapp-32
+    name: myapp-32-deploy
+    namespace: testing
+    ownerReferences:
+    - apiVersion: v1
+      kind: ReplicationController
+      name: myapp-32
+      uid: d8b3d7ab-8d88-11ea-9665-0ef0e3c74fbe
+    resourceVersion: "1340953"
+    selfLink: /api/v1/namespaces/testing/pods/myapp-32-deploy
+    uid: d8d71b05-8d88-11ea-9665-0ef0e3c74fbe
+  spec:
+    activeDeadlineSeconds: 21600
+    containers:
+    - env:
+      - name: OPENSHIFT_DEPLOYMENT_NAME
+        value: myapp-32
+      - name: OPENSHIFT_DEPLOYMENT_NAMESPACE
+        value: testing
+      image: quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:9ac5a8dceed67e3c3e1c018dc581bf5f03d77a20a2f1ca1bf00c32b5e75b19f6
+      imagePullPolicy: IfNotPresent
+      name: deployment
+      resources: {}
+      securityContext:
+        capabilities:
+          drop:
+          - KILL
+          - MKNOD
+          - SETGID
+          - SETUID
+        runAsUser: 1000610000
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: deployer-token-xxfgd
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    imagePullSecrets:
+    - name: deployer-dockercfg-rbjfk
+    nodeName: crc-2n9vw-master-0
+    priority: 0
+    restartPolicy: Never
+    schedulerName: default-scheduler
+    securityContext:
+      fsGroup: 1000610000
+      seLinuxOptions:
+        level: s0:c25,c5
+    serviceAccount: deployer
+    serviceAccountName: deployer
+    shareProcessNamespace: false
+    terminationGracePeriodSeconds: 10
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: deployer-token-xxfgd
+      secret:
+        defaultMode: 420
+        secretName: deployer-token-xxfgd
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2020-05-03T22:04:08Z"
+      reason: PodCompleted
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2020-05-03T22:04:27Z"
+      reason: PodCompleted
+      status: "False"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2020-05-03T22:04:27Z"
+      reason: PodCompleted
+      status: "False"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2020-05-03T22:04:08Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: cri-o://dbfbd05ec4942f7ba55f79990e889ac292a0e37b0bce9ff4853491eb1db095f4
+      image: quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:9ac5a8dceed67e3c3e1c018dc581bf5f03d77a20a2f1ca1bf00c32b5e75b19f6
+      imageID: quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:9ac5a8dceed67e3c3e1c018dc581bf5f03d77a20a2f1ca1bf00c32b5e75b19f6
+      lastState: {}
+      name: deployment
+      ready: false
+      restartCount: 0
+      state:
+        terminated:
+          containerID: cri-o://dbfbd05ec4942f7ba55f79990e889ac292a0e37b0bce9ff4853491eb1db095f4
+          exitCode: 0
+          finishedAt: "2020-05-03T22:04:26Z"
+          reason: Completed
+          startedAt: "2020-05-03T22:04:16Z"
+    hostIP: 192.168.64.2
+    phase: Succeeded
+    podIP: 10.128.1.67
+    qosClass: BestEffort
+    startTime: "2020-05-03T22:04:08Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      k8s.v1.cni.cncf.io/networks-status: |-
+        [{
+            "name": "openshift-sdn",
+            "interface": "eth0",
+            "ips": [
+                "10.128.1.119"
+            ],
+            "default": true,
+            "dns": {}
+        }]
+      openshift.io/deployment-config.latest-version: "33"
+      openshift.io/deployment-config.name: myapp
+      openshift.io/deployment.name: myapp-33
+      openshift.io/scc: restricted
+    creationTimestamp: "2020-05-03T22:16:52Z"
+    generateName: myapp-33-
+    labels:
+      deployment: myapp-33
+      deployment-config.name: myapp
+      deploymentconfig: myapp
+    name: myapp-33-cz2gh
+    namespace: testing
+    ownerReferences:
+    - apiVersion: v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicationController
+      name: myapp-33
+      uid: 04cf8376-8d8b-11ea-9665-0ef0e3c74fbe
+    resourceVersion: "1346927"
+    selfLink: /api/v1/namespaces/testing/pods/myapp-33-cz2gh
+    uid: cabe5dda-8d8b-11ea-9665-0ef0e3c74fbe
+  spec:
+    containers:
+    - image: image-registry.openshift-image-registry.svc:5000/development/myapp:promoteQA
+      imagePullPolicy: Always
+      name: default-container
+      resources: {}
+      securityContext:
+        capabilities:
+          drop:
+          - KILL
+          - MKNOD
+          - SETGID
+          - SETUID
+        runAsUser: 1000610000
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: default-token-cck8k
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    imagePullSecrets:
+    - name: default-dockercfg-772f5
+    nodeName: crc-2n9vw-master-0
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext:
+      fsGroup: 1000610000
+      seLinuxOptions:
+        level: s0:c25,c5
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: default-token-cck8k
+      secret:
+        defaultMode: 420
+        secretName: default-token-cck8k
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2020-05-03T22:16:53Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2020-05-04T12:08:20Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2020-05-04T12:08:20Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2020-05-03T22:16:52Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: cri-o://bb07259e7c3f223bfd99b5ec0ba732f4d7d1054be90088f4d4cfae3d14e55415
+      image: image-registry.openshift-image-registry.svc:5000/development/myapp:promoteQA
+      imageID: image-registry.openshift-image-registry.svc:5000/development/myapp@sha256:0438f51d025f812fd616f4973cc1a8885dce709916ff33c79185f724bcae4135
+      lastState:
+        terminated:
+          containerID: cri-o://c13d7608bb2b475377d5277b5da0c4fcfe3b353f072dbbb9e4b6d537ff39cc8c
+          exitCode: 255
+          finishedAt: "2020-05-04T12:05:30Z"
+          reason: Error
+          startedAt: "2020-05-03T22:17:03Z"
+      name: default-container
+      ready: true
+      restartCount: 1
+      state:
+        running:
+          startedAt: "2020-05-04T12:08:19Z"
+    hostIP: 192.168.64.2
+    phase: Running
+    podIP: 10.128.1.119
+    qosClass: BestEffort
+    startTime: "2020-05-03T22:16:53Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      k8s.v1.cni.cncf.io/networks-status: ""
+      openshift.io/deployment-config.name: myapp
+      openshift.io/deployment.name: myapp-33
+      openshift.io/scc: restricted
+    creationTimestamp: "2020-05-03T22:11:21Z"
+    labels:
+      openshift.io/deployer-pod-for.name: myapp-33
+    name: myapp-33-deploy
+    namespace: testing
+    ownerReferences:
+    - apiVersion: v1
+      kind: ReplicationController
+      name: myapp-33
+      uid: 04cf8376-8d8b-11ea-9665-0ef0e3c74fbe
+    resourceVersion: "1343135"
+    selfLink: /api/v1/namespaces/testing/pods/myapp-33-deploy
+    uid: 051be4ad-8d8b-11ea-9665-0ef0e3c74fbe
+  spec:
+    activeDeadlineSeconds: 21600
+    containers:
+    - env:
+      - name: OPENSHIFT_DEPLOYMENT_NAME
+        value: myapp-33
+      - name: OPENSHIFT_DEPLOYMENT_NAMESPACE
+        value: testing
+      image: quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:9ac5a8dceed67e3c3e1c018dc581bf5f03d77a20a2f1ca1bf00c32b5e75b19f6
+      imagePullPolicy: IfNotPresent
+      name: deployment
+      resources: {}
+      securityContext:
+        capabilities:
+          drop:
+          - KILL
+          - MKNOD
+          - SETGID
+          - SETUID
+        runAsUser: 1000610000
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: deployer-token-xxfgd
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    imagePullSecrets:
+    - name: deployer-dockercfg-rbjfk
+    nodeName: crc-2n9vw-master-0
+    priority: 0
+    restartPolicy: Never
+    schedulerName: default-scheduler
+    securityContext:
+      fsGroup: 1000610000
+      seLinuxOptions:
+        level: s0:c25,c5
+    serviceAccount: deployer
+    serviceAccountName: deployer
+    shareProcessNamespace: false
+    terminationGracePeriodSeconds: 10
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: deployer-token-xxfgd
+      secret:
+        defaultMode: 420
+        secretName: deployer-token-xxfgd
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2020-05-03T22:16:39Z"
+      reason: PodCompleted
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2020-05-03T22:17:07Z"
+      reason: PodCompleted
+      status: "False"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2020-05-03T22:17:07Z"
+      reason: PodCompleted
+      status: "False"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2020-05-03T22:16:39Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: cri-o://a9799114e083a530a30e72237ea745f3227a522f42a0cbbe377fe71735e22ff1
+      image: quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:9ac5a8dceed67e3c3e1c018dc581bf5f03d77a20a2f1ca1bf00c32b5e75b19f6
+      imageID: quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:9ac5a8dceed67e3c3e1c018dc581bf5f03d77a20a2f1ca1bf00c32b5e75b19f6
+      lastState: {}
+      name: deployment
+      ready: false
+      restartCount: 0
+      state:
+        terminated:
+          containerID: cri-o://a9799114e083a530a30e72237ea745f3227a522f42a0cbbe377fe71735e22ff1
+          exitCode: 0
+          finishedAt: "2020-05-03T22:17:06Z"
+          reason: Completed
+          startedAt: "2020-05-03T22:16:51Z"
+    hostIP: 192.168.64.2
+    phase: Succeeded
+    podIP: 10.128.1.74
+    qosClass: BestEffort
+    startTime: "2020-05-03T22:16:39Z"
+- apiVersion: v1
+  kind: ReplicationController
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/original-replicas: "1"
+      openshift.io/deployer-pod.completed-at: 2020-05-03 22:04:26 +0000 UTC
+      openshift.io/deployer-pod.created-at: 2020-05-03 21:55:48 +0000 UTC
+      openshift.io/deployer-pod.name: myapp-32-deploy
+      openshift.io/deployment-config.latest-version: "32"
+      openshift.io/deployment-config.name: myapp
+      openshift.io/deployment.phase: Complete
+      openshift.io/deployment.replicas: "1"
+      openshift.io/deployment.status-reason: manual change
+      openshift.io/encoded-deployment-config: |
+        {"kind":"DeploymentConfig","apiVersion":"apps.openshift.io/v1","metadata":{"name":"myapp","namespace":"testing","selfLink":"/apis/apps.openshift.io/v1/namespaces/testing/deploymentconfigs/myapp","uid":"6f85cccf-8718-11ea-8c6a-0a580a8001c6","resourceVersion":"1339488","generation":32,"creationTimestamp":"2020-04-25T17:16:00Z"},"spec":{"strategy":{"type":"Rolling","rollingParams":{"updatePeriodSeconds":1,"intervalSeconds":1,"timeoutSeconds":600,"maxUnavailable":"25%","maxSurge":"25%"},"resources":{},"activeDeadlineSeconds":21600},"triggers":[{"type":"ConfigChange"}],"replicas":1,"revisionHistoryLimit":10,"test":false,"selector":{"deployment-config.name":"myapp"},"template":{"metadata":{"creationTimestamp":null,"labels":{"deployment-config.name":"myapp"}},"spec":{"containers":[{"name":"default-container","image":"image-registry.openshift-image-registry.svc:5000/development/myapp:promoteQA","resources":{},"terminationMessagePath":"/dev/termination-log","terminationMessagePolicy":"File","imagePullPolicy":"Always"}],"restartPolicy":"Always","terminationGracePeriodSeconds":30,"dnsPolicy":"ClusterFirst","securityContext":{},"schedulerName":"default-scheduler"}}},"status":{"latestVersion":32,"observedGeneration":31,"replicas":0,"updatedReplicas":0,"availableReplicas":0,"unavailableReplicas":0,"details":{"message":"manual change","causes":[{"type":"Manual"}]},"conditions":[{"type":"Progressing","status":"False","lastUpdateTime":"2020-05-03T21:39:24Z","lastTransitionTime":"2020-05-03T21:39:24Z","reason":"ProgressDeadlineExceeded","message":"replication controller \"myapp-31\" has failed progressing"},{"type":"Available","status":"False","lastUpdateTime":"2020-05-03T21:40:47Z","lastTransitionTime":"2020-05-03T21:40:47Z","message":"Deployment config does not have minimum availability."}]}}
+    creationTimestamp: "2020-05-03T21:55:47Z"
+    generation: 3
+    labels:
+      openshift.io/deployment-config.name: myapp
+    name: myapp-32
+    namespace: testing
+    ownerReferences:
+    - apiVersion: apps.openshift.io/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: DeploymentConfig
+      name: myapp
+      uid: 6f85cccf-8718-11ea-8c6a-0a580a8001c6
+    resourceVersion: "1343122"
+    selfLink: /api/v1/namespaces/testing/replicationcontrollers/myapp-32
+    uid: d8b3d7ab-8d88-11ea-9665-0ef0e3c74fbe
+  spec:
+    replicas: 0
+    selector:
+      deployment: myapp-32
+      deployment-config.name: myapp
+      deploymentconfig: myapp
+    template:
+      metadata:
+        annotations:
+          openshift.io/deployment-config.latest-version: "32"
+          openshift.io/deployment-config.name: myapp
+          openshift.io/deployment.name: myapp-32
+        creationTimestamp: null
+        labels:
+          deployment: myapp-32
+          deployment-config.name: myapp
+          deploymentconfig: myapp
+      spec:
+        containers:
+        - image: image-registry.openshift-image-registry.svc:5000/development/myapp:promoteQA
+          imagePullPolicy: Always
+          name: default-container
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    observedGeneration: 3
+    replicas: 0
+- apiVersion: v1
+  kind: ReplicationController
+  metadata:
+    annotations:
+      openshift.io/deployer-pod.completed-at: 2020-05-03 22:17:06 +0000 UTC
+      openshift.io/deployer-pod.created-at: 2020-05-03 22:11:21 +0000 UTC
+      openshift.io/deployer-pod.name: myapp-33-deploy
+      openshift.io/deployment-config.latest-version: "33"
+      openshift.io/deployment-config.name: myapp
+      openshift.io/deployment.phase: Complete
+      openshift.io/deployment.replicas: ""
+      openshift.io/deployment.status-reason: manual change
+      openshift.io/encoded-deployment-config: |
+        {"kind":"DeploymentConfig","apiVersion":"apps.openshift.io/v1","metadata":{"name":"myapp","namespace":"testing","selfLink":"/apis/apps.openshift.io/v1/namespaces/testing/deploymentconfigs/myapp","uid":"6f85cccf-8718-11ea-8c6a-0a580a8001c6","resourceVersion":"1342121","generation":33,"creationTimestamp":"2020-04-25T17:16:00Z"},"spec":{"strategy":{"type":"Rolling","rollingParams":{"updatePeriodSeconds":1,"intervalSeconds":1,"timeoutSeconds":600,"maxUnavailable":"25%","maxSurge":"25%"},"resources":{},"activeDeadlineSeconds":21600},"triggers":[{"type":"ConfigChange"}],"replicas":1,"revisionHistoryLimit":10,"test":false,"selector":{"deployment-config.name":"myapp"},"template":{"metadata":{"creationTimestamp":null,"labels":{"deployment-config.name":"myapp"}},"spec":{"containers":[{"name":"default-container","image":"image-registry.openshift-image-registry.svc:5000/development/myapp:promoteQA","resources":{},"terminationMessagePath":"/dev/termination-log","terminationMessagePolicy":"File","imagePullPolicy":"Always"}],"restartPolicy":"Always","terminationGracePeriodSeconds":30,"dnsPolicy":"ClusterFirst","securityContext":{},"schedulerName":"default-scheduler"}}},"status":{"latestVersion":33,"observedGeneration":32,"replicas":1,"updatedReplicas":1,"availableReplicas":1,"unavailableReplicas":0,"details":{"message":"manual change","causes":[{"type":"Manual"}]},"conditions":[{"type":"Available","status":"True","lastUpdateTime":"2020-05-03T22:04:26Z","lastTransitionTime":"2020-05-03T22:04:26Z","message":"Deployment config has minimum availability."},{"type":"Progressing","status":"True","lastUpdateTime":"2020-05-03T22:04:27Z","lastTransitionTime":"2020-05-03T22:04:27Z","reason":"NewReplicationControllerAvailable","message":"replication controller \"myapp-32\" successfully rolled out"}],"readyReplicas":1}}
+    creationTimestamp: "2020-05-03T22:11:20Z"
+    generation: 2
+    labels:
+      openshift.io/deployment-config.name: myapp
+    name: myapp-33
+    namespace: testing
+    ownerReferences:
+    - apiVersion: apps.openshift.io/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: DeploymentConfig
+      name: myapp
+      uid: 6f85cccf-8718-11ea-8c6a-0a580a8001c6
+    resourceVersion: "1346928"
+    selfLink: /api/v1/namespaces/testing/replicationcontrollers/myapp-33
+    uid: 04cf8376-8d8b-11ea-9665-0ef0e3c74fbe
+  spec:
+    replicas: 1
+    selector:
+      deployment: myapp-33
+      deployment-config.name: myapp
+      deploymentconfig: myapp
+    template:
+      metadata:
+        annotations:
+          openshift.io/deployment-config.latest-version: "33"
+          openshift.io/deployment-config.name: myapp
+          openshift.io/deployment.name: myapp-33
+        creationTimestamp: null
+        labels:
+          deployment: myapp-33
+          deployment-config.name: myapp
+          deploymentconfig: myapp
+      spec:
+        containers:
+        - image: image-registry.openshift-image-registry.svc:5000/development/myapp:promoteQA
+          imagePullPolicy: Always
+          name: default-container
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 1
+    fullyLabeledReplicas: 1
+    observedGeneration: 2
+    readyReplicas: 1
+    replicas: 1
+- apiVersion: v1
+  kind: Service
+  metadata:
+    creationTimestamp: "2020-05-02T16:47:48Z"
+    name: myapp
+    namespace: testing
+    resourceVersion: "1207679"
+    selfLink: /api/v1/namespaces/testing/services/myapp
+    uid: a7bf5d21-8c94-11ea-a980-0ef0e3c74fbe
+  spec:
+    clusterIP: 172.30.238.235
+    ports:
+    - port: 7777
+      protocol: TCP
+      targetPort: 7777
+    selector:
+      deployment-config.name: myapp
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: apps.openshift.io/v1
+  kind: DeploymentConfig
+  metadata:
+    creationTimestamp: "2020-04-25T17:16:00Z"
+    generation: 33
+    name: myapp
+    namespace: testing
+    resourceVersion: "1346930"
+    selfLink: /apis/apps.openshift.io/v1/namespaces/testing/deploymentconfigs/myapp
+    uid: 6f85cccf-8718-11ea-8c6a-0a580a8001c6
+  spec:
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      deployment-config.name: myapp
+    strategy:
+      activeDeadlineSeconds: 21600
+      resources: {}
+      rollingParams:
+        intervalSeconds: 1
+        maxSurge: 25%
+        maxUnavailable: 25%
+        timeoutSeconds: 600
+        updatePeriodSeconds: 1
+      type: Rolling
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          deployment-config.name: myapp
+      spec:
+        containers:
+        - image: image-registry.openshift-image-registry.svc:5000/development/myapp:promoteQA
+          imagePullPolicy: Always
+          name: default-container
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+    test: false
+    triggers:
+    - type: ConfigChange
+  status:
+    availableReplicas: 1
+    conditions:
+    - lastTransitionTime: "2020-05-03T22:17:04Z"
+      lastUpdateTime: "2020-05-03T22:17:07Z"
+      message: replication controller "myapp-33" successfully rolled out
+      reason: NewReplicationControllerAvailable
+      status: "True"
+      type: Progressing
+    - lastTransitionTime: "2020-05-04T12:15:06Z"
+      lastUpdateTime: "2020-05-04T12:15:06Z"
+      message: Deployment config has minimum availability.
+      status: "True"
+      type: Available
+    details:
+      causes:
+      - type: Manual
+      message: manual change
+    latestVersion: 33
+    observedGeneration: 33
+    readyReplicas: 1
+    replicas: 1
+    unavailableReplicas: 0
+    updatedReplicas: 1
+- apiVersion: route.openshift.io/v1
+  kind: Route
+  metadata:
+    annotations:
+      openshift.io/host.generated: "true"
+    creationTimestamp: "2020-05-02T16:48:44Z"
+    name: myapp
+    namespace: testing
+    resourceVersion: "1207834"
+    selfLink: /apis/route.openshift.io/v1/namespaces/testing/routes/myapp
+    uid: c90abeb8-8c94-11ea-82fc-0a580a800032
+  spec:
+    host: myapp-testing.apps-crc.testing
+    port:
+      targetPort: 7777
+    subdomain: ""
+    to:
+      kind: Service
+      name: myapp
+      weight: 100
+    wildcardPolicy: None
+  status:
+    ingress:
+    - conditions:
+      - lastTransitionTime: "2020-05-02T16:48:44Z"
+        status: "True"
+        type: Admitted
+      host: myapp-testing.apps-crc.testing
+      routerCanonicalHostname: apps-crc.testing
+      routerName: default
+      wildcardPolicy: None
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""

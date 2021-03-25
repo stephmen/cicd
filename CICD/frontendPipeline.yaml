@@ -1,0 +1,78 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  creationTimestamp: "2020-04-25T16:13:19Z"
+  labels:
+    app: frontendpipeline
+    name: frontendpipeline
+  name: frontendpipeline
+  namespace: cicd
+  resourceVersion: "2450366"
+  selfLink: /apis/build.openshift.io/v1/namespaces/cicd/buildconfigs/frontendpipeline
+  uid: ad6225ba-870f-11ea-8c6a-0a580a8001c6
+spec:
+  failedBuildsHistoryLimit: 5
+  nodeSelector: {}
+  output: {}
+  postCommit: {}
+  resources: {}
+  runPolicy: Serial
+  source:
+    type: None
+  strategy:
+    jenkinsPipelineStrategy:
+      jenkinsfile: "try{\n    timeout(time: 20, unit: 'MINUTES') {\n    node('maven'){\n
+        \       stage('build & deploy in dev'){\n        openshift.withCluster() {\n
+        \              openshift.withProject('development') {\n                   def
+        bld = openshift.startBuild('myapp')\n                   bld.untilEach {\n
+        \                      return it.object().status.phase == \"Running\"\n            }\n
+        \       }\n    }\n        stage('verify deploy in dev'){\n        openshift.withCluster()
+        {\n                openshift.withProject('development'){\n                    def
+        latestDeploymentVersion = openshift.selector('dc','myapp').object().status.latestVersion\n
+        \                   def rc = openshift.selector('rc', \"myapp-${latestDeploymentVersion}\")\n
+        \                   rc.untilEach(1){\n                    def rcMap = it.object()\n
+        \                       return (rcMap.status.replicas.equals(rcMap.status.readyReplicas))\n
+        \           }\n        }\n    } \n    stage('deploy in test Image Tag') {\n
+        \           openshift.withCluster() {\n            openshift.tag( 'development/myapp:latest',
+        'development/myapp:promoteQA')\n              \n}\n    stage('approval') {\n
+        \                           timeout(time: 2, unit: 'DAYS') {\n                            input
+        message: \"Start Testing Rollout ?\"\n                        }\n     stage('deploy
+        in test Rollout') {\n            openshift.withCluster() {\n              openshift.withProject('testing')
+        {\n                def dc = openshift.selector('dc', 'myapp')\n                dc.rollout().latest()\n
+        \             }\n            }\n     stage('verify deploy in testing'){\n
+        \       openshift.withCluster() {\n                openshift.withProject('testing'){\n
+        \                   def latestDeploymentVersion = openshift.selector('dc','myapp').object().status.latestVersion\n
+        \                   def rc = openshift.selector('rc', \"myapp-${latestDeploymentVersion}\")\n
+        \                   rc.untilEach(1){\n                    def rcMap = it.object()\n
+        \                       return (rcMap.status.replicas.equals(rcMap.status.readyReplicas))\n
+        \           }\n        }\n    } \n     }\n    }\n    stage('approval') {\n
+        \                           timeout(time: 2, unit: 'DAYS') {\n                            input
+        message: \"Start Production Rollout ?\"\n                        }\n                            stage('Deploy
+        in Production Image Tag') {\n                                openshift.withCluster()
+        {\n                                openshift.tag( 'development/myapp:latest',
+        'development/myapp:promotePRD')\n                    } \n                    }\n
+        \                               stage('Deploy in Production Rollout') {\n
+        \                               openshift.withCluster() {\n                                openshift.withProject('production')
+        {\n                                def dc = openshift.selector('dc', 'myapp')\n
+        \                               dc.rollout().latest()\n              }\n            }\n
+        \    stage('Verify Deployment in Production'){\n        openshift.withCluster()
+        {\n                openshift.withProject('production'){\n                    def
+        latestDeploymentVersion = openshift.selector('dc','myapp').object().status.latestVersion\n
+        \                   def rc = openshift.selector('rc', \"myapp-${latestDeploymentVersion}\")\n
+        \                   rc.untilEach(1){\n                    def rcMap = it.object()\n
+        \                       return (rcMap.status.replicas.equals(rcMap.status.readyReplicas))\n
+        \           }\n        }\n            }  \n\t}     \n          }\n          }\n
+        \   }\n    }\n    }\n    }\n    }\n    }\n    }\ncatch (err) {\n   echo \"in
+        catch block\"\n   echo \"Caught: ${err}\"\n   currentBuild.result = 'FAILURE'\n
+        \  throw err\n}\n "
+    type: JenkinsPipeline
+  successfulBuildsHistoryLimit: 5
+  triggers:
+  - github:
+      secret: secret101
+    type: GitHub
+  - generic:
+      secret: secret101
+    type: Generic
+status:
+  lastVersion: 73

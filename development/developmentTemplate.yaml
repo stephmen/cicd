@@ -1,0 +1,2525 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      k8s.v1.cni.cncf.io/networks-status: |-
+        [{
+            "name": "openshift-sdn",
+            "interface": "eth0",
+            "ips": [
+                "10.128.0.92"
+            ],
+            "default": true,
+            "dns": {}
+        }]
+      openshift.io/deployment-config.latest-version: "45"
+      openshift.io/deployment-config.name: apollo-backend
+      openshift.io/deployment.name: apollo-backend-45
+      openshift.io/generated-by: OpenShiftNewApp
+      openshift.io/scc: restricted
+    creationTimestamp: "2020-05-13T17:54:17Z"
+    generateName: apollo-backend-45-
+    labels:
+      app: apollo-backend
+      deployment: apollo-backend-45
+      deploymentconfig: apollo-backend
+    name: apollo-backend-45-6h4fq
+    namespace: development
+    ownerReferences:
+    - apiVersion: v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicationController
+      name: apollo-backend-45
+      uid: c41175b2-9542-11ea-be3b-0ef0e3c74fbe
+    resourceVersion: "2508175"
+    selfLink: /api/v1/namespaces/development/pods/apollo-backend-45-6h4fq
+    uid: c42e6c0b-9542-11ea-be3b-0ef0e3c74fbe
+  spec:
+    containers:
+    - env:
+      - name: PRISMA_ENDPOINT
+        value: http://172.30.241.100:4466
+      - name: PRISMA_SECRET
+        value: prisma
+      - name: APP_SECRET
+        value: prisma
+      - name: PORT
+        value: "4444"
+      - name: PRISMA_ENDPOINT_end
+        value: http://prisma-development.apps-crc.testing:4466
+      - name: WHITELIST
+        value: http://prisma-development.apps-crc.testing, prisma-development.apps-crc.testing,
+          apollo-backend-development.apps-crc.testing, http://apollo-backend-development.apps-crc.testing,
+          frontend-development.apps-crc.testing, http://frontend-development.apps-crc.testing,
+          http://checkout.stripe.com/
+      - name: MAIL_HOST
+        value: smtp.mailtrap.io
+      - name: MAIL_PORT
+        value: "2525"
+      - name: MAIL_USER
+        value: 2af1c2bddf929f
+      - name: MAIL_PASS
+        value: 74d73a20a356dc
+      - name: STRIPE_SECRET
+        value: sk_test_bh0QAXn1x8LhONmDvaHLDKAu00sCpS9yxT
+      - name: FRONTEND_URL
+        value: http://frontend-development.apps-crc.testing
+      - name: FRONTEND_IP
+        value: http://172.30.90.125:7777
+      - name: BACKEND_URL
+        value: http://apollo-backend-development.apps-crc.testing
+      - name: BACKEND_IP
+        value: http://172.30.254.196:4444
+      image: image-registry.openshift-image-registry.svc:5000/development/apollo-backend@sha256:83e0d683c0ac0f7cc3f12dcf9746ce92078c23047262d2927fda5efb7f046ae3
+      imagePullPolicy: Always
+      name: apollo-backend
+      ports:
+      - containerPort: 8080
+        protocol: TCP
+      resources: {}
+      securityContext:
+        capabilities:
+          drop:
+          - KILL
+          - MKNOD
+          - SETGID
+          - SETUID
+        runAsUser: 1000640000
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: default-token-p4lrj
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    imagePullSecrets:
+    - name: default-dockercfg-gb9zj
+    nodeName: crc-2n9vw-master-0
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext:
+      fsGroup: 1000640000
+      seLinuxOptions:
+        level: s0:c25,c20
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: default-token-p4lrj
+      secret:
+        defaultMode: 420
+        secretName: default-token-p4lrj
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2020-05-13T17:56:08Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2020-05-13T17:56:16Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2020-05-13T17:56:16Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2020-05-13T17:56:08Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: cri-o://8eeed0e12afcbc371a722f545758c72f64fae4f8021dee4e710f774833c09b4a
+      image: image-registry.openshift-image-registry.svc:5000/development/apollo-backend@sha256:83e0d683c0ac0f7cc3f12dcf9746ce92078c23047262d2927fda5efb7f046ae3
+      imageID: image-registry.openshift-image-registry.svc:5000/development/apollo-backend@sha256:83e0d683c0ac0f7cc3f12dcf9746ce92078c23047262d2927fda5efb7f046ae3
+      lastState: {}
+      name: apollo-backend
+      ready: true
+      restartCount: 0
+      state:
+        running:
+          startedAt: "2020-05-13T17:56:16Z"
+    hostIP: 192.168.64.2
+    phase: Running
+    podIP: 10.128.0.92
+    qosClass: BestEffort
+    startTime: "2020-05-13T17:56:08Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      k8s.v1.cni.cncf.io/networks-status: |-
+        [{
+            "name": "openshift-sdn",
+            "interface": "eth0",
+            "ips": [
+                "10.128.0.97"
+            ],
+            "default": true,
+            "dns": {}
+        }]
+      openshift.io/deployment-config.latest-version: "21"
+      openshift.io/deployment-config.name: frontend
+      openshift.io/deployment.name: frontend-21
+      openshift.io/generated-by: OpenShiftNewApp
+      openshift.io/scc: restricted
+    creationTimestamp: "2020-05-13T18:07:52Z"
+    generateName: frontend-21-
+    labels:
+      app: frontend
+      deployment: frontend-21
+      deploymentconfig: frontend
+    name: frontend-21-4mkc2
+    namespace: development
+    ownerReferences:
+    - apiVersion: v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicationController
+      name: frontend-21
+      uid: f7b066df-9543-11ea-be3b-0ef0e3c74fbe
+    resourceVersion: "2510171"
+    selfLink: /api/v1/namespaces/development/pods/frontend-21-4mkc2
+    uid: a9af45f9-9544-11ea-be3b-0ef0e3c74fbe
+  spec:
+    containers:
+    - env:
+      - name: prodEndpoint
+        value: http://apollo-backend-development.apps-crc.testing
+      - name: endpoint
+        value: http://172.30.254.196:4444
+      image: image-registry.openshift-image-registry.svc:5000/development/frontend@sha256:6de954aa82a7fb4956400602dbb12ada3a7aa1062b9335ce3ed817418db53551
+      imagePullPolicy: Always
+      name: frontend
+      ports:
+      - containerPort: 8080
+        protocol: TCP
+      resources: {}
+      securityContext:
+        capabilities:
+          drop:
+          - KILL
+          - MKNOD
+          - SETGID
+          - SETUID
+        runAsUser: 1000640000
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: default-token-p4lrj
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    imagePullSecrets:
+    - name: default-dockercfg-gb9zj
+    nodeName: crc-2n9vw-master-0
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext:
+      fsGroup: 1000640000
+      seLinuxOptions:
+        level: s0:c25,c20
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: default-token-p4lrj
+      secret:
+        defaultMode: 420
+        secretName: default-token-p4lrj
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2020-05-13T18:07:52Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2020-05-13T18:08:12Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2020-05-13T18:08:12Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2020-05-13T18:07:52Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: cri-o://c93dd9f15afa910cc2893513ee174cf0e7f6ca30a91e04805b288d391cf508c9
+      image: image-registry.openshift-image-registry.svc:5000/development/frontend@sha256:6de954aa82a7fb4956400602dbb12ada3a7aa1062b9335ce3ed817418db53551
+      imageID: image-registry.openshift-image-registry.svc:5000/development/frontend@sha256:6de954aa82a7fb4956400602dbb12ada3a7aa1062b9335ce3ed817418db53551
+      lastState: {}
+      name: frontend
+      ready: true
+      restartCount: 0
+      state:
+        running:
+          startedAt: "2020-05-13T18:08:12Z"
+    hostIP: 192.168.64.2
+    phase: Running
+    podIP: 10.128.0.97
+    qosClass: BestEffort
+    startTime: "2020-05-13T18:07:52Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      k8s.v1.cni.cncf.io/networks-status: |-
+        [{
+            "name": "openshift-sdn",
+            "interface": "eth0",
+            "ips": [
+                "10.128.0.94"
+            ],
+            "default": true,
+            "dns": {}
+        }]
+      openshift.io/deployment-config.latest-version: "1"
+      openshift.io/deployment-config.name: mongo
+      openshift.io/deployment.name: mongo-1
+      openshift.io/scc: restricted
+    creationTimestamp: "2020-05-13T17:56:21Z"
+    generateName: mongo-1-
+    labels:
+      deployment: mongo-1
+      deploymentconfig: mongo
+      io.kompose.service: mongo
+    name: mongo-1-lsbh4
+    namespace: development
+    ownerReferences:
+    - apiVersion: v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicationController
+      name: mongo-1
+      uid: c41f2ba8-9542-11ea-be3b-0ef0e3c74fbe
+    resourceVersion: "2508264"
+    selfLink: /api/v1/namespaces/development/pods/mongo-1-lsbh4
+    uid: 0d88e02b-9543-11ea-be3b-0ef0e3c74fbe
+  spec:
+    containers:
+    - env:
+      - name: MONGO_INITDB_ROOT_PASSWORD
+        value: prisma
+      - name: MONGO_INITDB_ROOT_USERNAME
+        value: prisma
+      image: mongo@sha256:685aba1be7c90b6b431b0d4afb569b41e133771a91bbae0898fd69f02da86832
+      imagePullPolicy: IfNotPresent
+      name: mongo
+      ports:
+      - containerPort: 27017
+        protocol: TCP
+      resources: {}
+      securityContext:
+        capabilities:
+          drop:
+          - KILL
+          - MKNOD
+          - SETGID
+          - SETUID
+        runAsUser: 1000640000
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/lib/mongo
+        name: mongo
+      - mountPath: /data/db
+        name: mongo-claim1
+      - mountPath: /data/configdb
+        name: mongo-claim2
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: default-token-p4lrj
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    imagePullSecrets:
+    - name: default-dockercfg-gb9zj
+    nodeName: crc-2n9vw-master-0
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext:
+      fsGroup: 1000640000
+      seLinuxOptions:
+        level: s0:c25,c20
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: mongo
+      persistentVolumeClaim:
+        claimName: mongo
+    - name: mongo-claim1
+      persistentVolumeClaim:
+        claimName: mongo-claim1
+    - name: mongo-claim2
+      persistentVolumeClaim:
+        claimName: mongo-claim2
+    - name: default-token-p4lrj
+      secret:
+        defaultMode: 420
+        secretName: default-token-p4lrj
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2020-05-13T17:56:21Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2020-05-13T17:56:29Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2020-05-13T17:56:29Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2020-05-13T17:56:21Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: cri-o://53943d2becd97a021676ae90579b4aec8c35de94082525ee321263ad061a5eb0
+      image: docker.io/library/mongo@sha256:685aba1be7c90b6b431b0d4afb569b41e133771a91bbae0898fd69f02da86832
+      imageID: docker.io/library/mongo@sha256:685aba1be7c90b6b431b0d4afb569b41e133771a91bbae0898fd69f02da86832
+      lastState: {}
+      name: mongo
+      ready: true
+      restartCount: 0
+      state:
+        running:
+          startedAt: "2020-05-13T17:56:29Z"
+    hostIP: 192.168.64.2
+    phase: Running
+    podIP: 10.128.0.94
+    qosClass: BestEffort
+    startTime: "2020-05-13T17:56:21Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      k8s.v1.cni.cncf.io/networks-status: |-
+        [{
+            "name": "openshift-sdn",
+            "interface": "eth0",
+            "ips": [
+                "10.128.0.90"
+            ],
+            "default": true,
+            "dns": {}
+        }]
+      openshift.io/deployment-config.latest-version: "9"
+      openshift.io/deployment-config.name: myapp
+      openshift.io/deployment.name: myapp-9
+      openshift.io/generated-by: OpenShiftNewApp
+      openshift.io/scc: restricted
+    creationTimestamp: "2020-05-13T17:54:18Z"
+    generateName: myapp-9-
+    labels:
+      app: myapp
+      deployment: myapp-9
+      deploymentconfig: myapp
+    name: myapp-9-r8jqt
+    namespace: development
+    ownerReferences:
+    - apiVersion: v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicationController
+      name: myapp-9
+      uid: c4216845-9542-11ea-be3b-0ef0e3c74fbe
+    resourceVersion: "2508192"
+    selfLink: /api/v1/namespaces/development/pods/myapp-9-r8jqt
+    uid: c42ef3d4-9542-11ea-be3b-0ef0e3c74fbe
+  spec:
+    containers:
+    - image: image-registry.openshift-image-registry.svc:5000/development/myapp@sha256:8eb1782cdfe7f65aaedd4a29c58b4674487436e3f54eff74bd40f8d995d61f2e
+      imagePullPolicy: Always
+      name: myapp
+      ports:
+      - containerPort: 8080
+        protocol: TCP
+      resources: {}
+      securityContext:
+        capabilities:
+          drop:
+          - KILL
+          - MKNOD
+          - SETGID
+          - SETUID
+        runAsUser: 1000640000
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: default-token-p4lrj
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    imagePullSecrets:
+    - name: default-dockercfg-gb9zj
+    nodeName: crc-2n9vw-master-0
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext:
+      fsGroup: 1000640000
+      seLinuxOptions:
+        level: s0:c25,c20
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: default-token-p4lrj
+      secret:
+        defaultMode: 420
+        secretName: default-token-p4lrj
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2020-05-13T17:56:08Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2020-05-13T17:56:17Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2020-05-13T17:56:17Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2020-05-13T17:56:08Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: cri-o://4af7b57288188e788bc51711f284174faf7f8d28c2393cbd90a74ca88afdf801
+      image: image-registry.openshift-image-registry.svc:5000/development/myapp@sha256:8eb1782cdfe7f65aaedd4a29c58b4674487436e3f54eff74bd40f8d995d61f2e
+      imageID: image-registry.openshift-image-registry.svc:5000/development/myapp@sha256:8eb1782cdfe7f65aaedd4a29c58b4674487436e3f54eff74bd40f8d995d61f2e
+      lastState: {}
+      name: myapp
+      ready: true
+      restartCount: 0
+      state:
+        running:
+          startedAt: "2020-05-13T17:56:17Z"
+    hostIP: 192.168.64.2
+    phase: Running
+    podIP: 10.128.0.90
+    qosClass: BestEffort
+    startTime: "2020-05-13T17:56:08Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      k8s.v1.cni.cncf.io/networks-status: |-
+        [{
+            "name": "openshift-sdn",
+            "interface": "eth0",
+            "ips": [
+                "10.128.0.93"
+            ],
+            "default": true,
+            "dns": {}
+        }]
+      openshift.io/deployment-config.latest-version: "1"
+      openshift.io/deployment-config.name: prisma
+      openshift.io/deployment.name: prisma-1
+      openshift.io/scc: restricted
+    creationTimestamp: "2020-05-13T17:56:21Z"
+    generateName: prisma-1-
+    labels:
+      deployment: prisma-1
+      deploymentconfig: prisma
+      io.kompose.service: prisma
+    name: prisma-1-drfl4
+    namespace: development
+    ownerReferences:
+    - apiVersion: v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicationController
+      name: prisma-1
+      uid: c423d8d3-9542-11ea-be3b-0ef0e3c74fbe
+    resourceVersion: "2508267"
+    selfLink: /api/v1/namespaces/development/pods/prisma-1-drfl4
+    uid: 0d8c938a-9543-11ea-be3b-0ef0e3c74fbe
+  spec:
+    containers:
+    - env:
+      - name: PRISMA_CONFIG
+        value: |
+          port: 4466
+          databases:
+            default:
+              connector: mongo
+              uri: mongodb://prisma:prisma@mongo
+      image: prismagraphql/prisma@sha256:de3e5a9d44c4e0cd24af9a9d435b8893a11a494d408d9f610fcfccfee1f99d28
+      imagePullPolicy: IfNotPresent
+      name: prisma
+      ports:
+      - containerPort: 4466
+        protocol: TCP
+      resources: {}
+      securityContext:
+        capabilities:
+          drop:
+          - KILL
+          - MKNOD
+          - SETGID
+          - SETUID
+        runAsUser: 1000640000
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: default-token-p4lrj
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    imagePullSecrets:
+    - name: default-dockercfg-gb9zj
+    nodeName: crc-2n9vw-master-0
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext:
+      fsGroup: 1000640000
+      seLinuxOptions:
+        level: s0:c25,c20
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: default-token-p4lrj
+      secret:
+        defaultMode: 420
+        secretName: default-token-p4lrj
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2020-05-13T17:56:21Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2020-05-13T17:56:29Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2020-05-13T17:56:29Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2020-05-13T17:56:21Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: cri-o://2291768cb2f0c8d67d5befb0b8d7838eb8f47a73d82056abca158c6fe95335f7
+      image: docker.io/prismagraphql/prisma:1.34
+      imageID: docker.io/prismagraphql/prisma@sha256:de3e5a9d44c4e0cd24af9a9d435b8893a11a494d408d9f610fcfccfee1f99d28
+      lastState: {}
+      name: prisma
+      ready: true
+      restartCount: 0
+      state:
+        running:
+          startedAt: "2020-05-13T17:56:29Z"
+    hostIP: 192.168.64.2
+    phase: Running
+    podIP: 10.128.0.93
+    qosClass: BestEffort
+    startTime: "2020-05-13T17:56:21Z"
+- apiVersion: v1
+  kind: ReplicationController
+  metadata:
+    annotations:
+      openshift.io/deployer-pod.completed-at: 2020-05-13 01:33:10 +0000 UTC
+      openshift.io/deployer-pod.created-at: 2020-05-13 01:27:42 +0000 UTC
+      openshift.io/deployer-pod.name: apollo-backend-45-deploy
+      openshift.io/deployer-pod.started-at: 2020-05-13 01:32:39 +0000 UTC
+      openshift.io/deployment-config.latest-version: "45"
+      openshift.io/deployment-config.name: apollo-backend
+      openshift.io/deployment.phase: Complete
+      openshift.io/deployment.replicas: "1"
+      openshift.io/deployment.status-reason: image change
+      openshift.io/encoded-deployment-config: |
+        {"kind":"DeploymentConfig","apiVersion":"apps.openshift.io/v1","metadata":{"name":"apollo-backend","namespace":"development","selfLink":"/apis/apps.openshift.io/v1/namespaces/development/deploymentconfigs/apollo-backend","uid":"e9b46f6b-9209-11ea-a9f7-0a580a8001f6","resourceVersion":"2479636","generation":49,"creationTimestamp":"2020-05-09T15:29:46Z","labels":{"app":"apollo-backend"},"annotations":{"app.openshift.io/connects-to":"prisma,frontend","kubectl.kubernetes.io/last-applied-configuration":"{\"apiVersion\":\"apps.openshift.io/v1\",\"kind\":\"DeploymentConfig\",\"metadata\":{\"annotations\":{\"app.openshift.io/connects-to\":\"prisma,frontend\",\"openshift.io/generated-by\":\"OpenShiftNewApp\"},\"creationTimestamp\":\"2020-05-07T17:31:05Z\",\"generation\":12,\"labels\":{\"app\":\"apollo-backend\"},\"name\":\"apollo-backend\",\"namespace\":\"development\",\"resourceVersion\":\"2036704\",\"selfLink\":\"/apis/apps.openshift.io/v1/namespaces/development/deploymentconfigs/apollo-backend\",\"uid\":\"876ee4f1-9088-11ea-8022-0a580a800100\"},\"spec\":{\"replicas\":1,\"revisionHistoryLimit\":10,\"selector\":{\"app\":\"apollo-backend\",\"deploymentconfig\":\"apollo-backend\"},\"strategy\":{\"activeDeadlineSeconds\":21600,\"resources\":{},\"rollingParams\":{\"intervalSeconds\":1,\"maxSurge\":\"25%\",\"maxUnavailable\":\"25%\",\"timeoutSeconds\":600,\"updatePeriodSeconds\":1},\"type\":\"Rolling\"},\"template\":{\"metadata\":{\"annotations\":{\"openshift.io/generated-by\":\"OpenShiftNewApp\"},\"creationTimestamp\":null,\"labels\":{\"app\":\"apollo-backend\",\"deploymentconfig\":\"apollo-backend\"}},\"spec\":{\"containers\":[{\"env\":[{\"name\":\"PRISMA_ENDPOINT\",\"value\":\"\\\"http://172.30.241.100:4466\\\"\"},{\"name\":\"PRISMA_SECRET\",\"value\":\"prisma\"},{\"name\":\"APP_SECRET\",\"value\":\"prisma\"},{\"name\":\"PORT\",\"value\":\"4444\"}],\"image\":\"image-registry.openshift-image-registry.svc:5000/development/apollo-backend@sha256:2585d28911caac8edb018d8fd3076ca8e6ff65a9920cc10303c56875ed0ccc57\",\"imagePullPolicy\":\"Always\",\"name\":\"apollo-backend\",\"ports\":[{\"containerPort\":8080,\"protocol\":\"TCP\"}],\"resources\":{},\"terminationMessagePath\":\"/dev/termination-log\",\"terminationMessagePolicy\":\"File\"}],\"dnsPolicy\":\"ClusterFirst\",\"restartPolicy\":\"Always\",\"schedulerName\":\"default-scheduler\",\"securityContext\":{},\"terminationGracePeriodSeconds\":30}},\"test\":false,\"triggers\":[{\"type\":\"ConfigChange\"},{\"imageChangeParams\":{\"automatic\":true,\"containerNames\":[\"apollo-backend\"],\"from\":{\"kind\":\"ImageStreamTag\",\"name\":\"apollo-backend:latest\",\"namespace\":\"development\"},\"lastTriggeredImage\":\"image-registry.openshift-image-registry.svc:5000/development/apollo-backend@sha256:2585d28911caac8edb018d8fd3076ca8e6ff65a9920cc10303c56875ed0ccc57\"},\"type\":\"ImageChange\"}]},\"status\":{\"availableReplicas\":0,\"conditions\":[{\"lastTransitionTime\":\"2020-05-09T15:12:25Z\",\"lastUpdateTime\":\"2020-05-09T15:12:31Z\",\"message\":\"replication controller \\\"apollo-backend-11\\\" successfully rolled out\",\"reason\":\"NewReplicationControllerAvailable\",\"status\":\"True\",\"type\":\"Progressing\"},{\"lastTransitionTime\":\"2020-05-09T15:23:34Z\",\"lastUpdateTime\":\"2020-05-09T15:23:34Z\",\"message\":\"Deployment config does not have minimum availability.\",\"status\":\"False\",\"type\":\"Available\"}],\"details\":{\"causes\":[{\"imageTrigger\":{\"from\":{\"kind\":\"DockerImage\",\"name\":\"image-registry.openshift-image-registry.svc:5000/development/apollo-backend@sha256:2585d28911caac8edb018d8fd3076ca8e6ff65a9920cc10303c56875ed0ccc57\"}},\"type\":\"ImageChange\"}],\"message\":\"image change\"},\"latestVersion\":11,\"observedGeneration\":12,\"replicas\":1,\"unavailableReplicas\":1,\"updatedReplicas\":1}}\n","openshift.io/generated-by":"OpenShiftNewApp"}},"spec":{"strategy":{"type":"Rolling","rollingParams":{"updatePeriodSeconds":1,"intervalSeconds":1,"timeoutSeconds":600,"maxUnavailable":"25%","maxSurge":"25%"},"resources":{},"activeDeadlineSeconds":21600},"triggers":[{"type":"ConfigChange"},{"type":"ImageChange","imageChangeParams":{"automatic":true,"containerNames":["apollo-backend"],"from":{"kind":"ImageStreamTag","namespace":"development","name":"apollo-backend:latest"},"lastTriggeredImage":"image-registry.openshift-image-registry.svc:5000/development/apollo-backend@sha256:83e0d683c0ac0f7cc3f12dcf9746ce92078c23047262d2927fda5efb7f046ae3"}}],"replicas":1,"revisionHistoryLimit":10,"test":false,"selector":{"app":"apollo-backend","deploymentconfig":"apollo-backend"},"template":{"metadata":{"creationTimestamp":null,"labels":{"app":"apollo-backend","deploymentconfig":"apollo-backend"},"annotations":{"openshift.io/generated-by":"OpenShiftNewApp"}},"spec":{"containers":[{"name":"apollo-backend","image":"image-registry.openshift-image-registry.svc:5000/development/apollo-backend@sha256:83e0d683c0ac0f7cc3f12dcf9746ce92078c23047262d2927fda5efb7f046ae3","ports":[{"containerPort":8080,"protocol":"TCP"}],"env":[{"name":"PRISMA_ENDPOINT","value":"http://172.30.241.100:4466"},{"name":"PRISMA_SECRET","value":"prisma"},{"name":"APP_SECRET","value":"prisma"},{"name":"PORT","value":"4444"},{"name":"PRISMA_ENDPOINT_end","value":"http://prisma-development.apps-crc.testing:4466"},{"name":"WHITELIST","value":"http://prisma-development.apps-crc.testing, prisma-development.apps-crc.testing, apollo-backend-development.apps-crc.testing, http://apollo-backend-development.apps-crc.testing, frontend-development.apps-crc.testing, http://frontend-development.apps-crc.testing, http://checkout.stripe.com/"},{"name":"MAIL_HOST","value":"smtp.mailtrap.io"},{"name":"MAIL_PORT","value":"2525"},{"name":"MAIL_USER","value":"2af1c2bddf929f"},{"name":"MAIL_PASS","value":"74d73a20a356dc"},{"name":"STRIPE_SECRET","value":"sk_test_bh0QAXn1x8LhONmDvaHLDKAu00sCpS9yxT"},{"name":"FRONTEND_URL","value":"http://frontend-development.apps-crc.testing"},{"name":"FRONTEND_IP","value":"http://172.30.90.125:7777"},{"name":"BACKEND_URL","value":"http://apollo-backend-development.apps-crc.testing"},{"name":"BACKEND_IP","value":"http://172.30.254.196:4444"}],"resources":{},"terminationMessagePath":"/dev/termination-log","terminationMessagePolicy":"File","imagePullPolicy":"Always"}],"restartPolicy":"Always","terminationGracePeriodSeconds":30,"dnsPolicy":"ClusterFirst","securityContext":{},"schedulerName":"default-scheduler"}}},"status":{"latestVersion":45,"observedGeneration":49,"replicas":1,"updatedReplicas":1,"availableReplicas":1,"unavailableReplicas":0,"details":{"message":"image change","causes":[{"type":"ImageChange","imageTrigger":{"from":{"kind":"DockerImage","name":"image-registry.openshift-image-registry.svc:5000/development/apollo-backend@sha256:83e0d683c0ac0f7cc3f12dcf9746ce92078c23047262d2927fda5efb7f046ae3"}}}]},"conditions":[{"type":"Progressing","status":"True","lastUpdateTime":"2020-05-13T01:33:10Z","lastTransitionTime":"2020-05-13T01:33:08Z","reason":"NewReplicationControllerAvailable","message":"replication controller \"apollo-backend-45\" successfully rolled out"},{"type":"Available","status":"True","lastUpdateTime":"2020-05-13T14:57:39Z","lastTransitionTime":"2020-05-13T14:57:39Z","message":"Deployment config has minimum availability."}],"readyReplicas":1}}
+    creationTimestamp: "2020-05-13T17:54:17Z"
+    generation: 2
+    labels:
+      app: apollo-backend
+      openshift.io/deployment-config.name: apollo-backend
+    name: apollo-backend-45
+    namespace: development
+    ownerReferences:
+    - apiVersion: apps.openshift.io/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: DeploymentConfig
+      name: apollo-backend
+      uid: e9b46f6b-9209-11ea-a9f7-0a580a8001f6
+    resourceVersion: "2508177"
+    selfLink: /api/v1/namespaces/development/replicationcontrollers/apollo-backend-45
+    uid: c41175b2-9542-11ea-be3b-0ef0e3c74fbe
+  spec:
+    replicas: 1
+    selector:
+      app: apollo-backend
+      deployment: apollo-backend-45
+      deploymentconfig: apollo-backend
+    template:
+      metadata:
+        annotations:
+          openshift.io/deployment-config.latest-version: "45"
+          openshift.io/deployment-config.name: apollo-backend
+          openshift.io/deployment.name: apollo-backend-45
+          openshift.io/generated-by: OpenShiftNewApp
+        creationTimestamp: null
+        labels:
+          app: apollo-backend
+          deployment: apollo-backend-45
+          deploymentconfig: apollo-backend
+      spec:
+        containers:
+        - env:
+          - name: PRISMA_ENDPOINT
+            value: http://172.30.241.100:4466
+          - name: PRISMA_SECRET
+            value: prisma
+          - name: APP_SECRET
+            value: prisma
+          - name: PORT
+            value: "4444"
+          - name: PRISMA_ENDPOINT_end
+            value: http://prisma-development.apps-crc.testing:4466
+          - name: WHITELIST
+            value: http://prisma-development.apps-crc.testing, prisma-development.apps-crc.testing,
+              apollo-backend-development.apps-crc.testing, http://apollo-backend-development.apps-crc.testing,
+              frontend-development.apps-crc.testing, http://frontend-development.apps-crc.testing,
+              http://checkout.stripe.com/
+          - name: MAIL_HOST
+            value: smtp.mailtrap.io
+          - name: MAIL_PORT
+            value: "2525"
+          - name: MAIL_USER
+            value: 2af1c2bddf929f
+          - name: MAIL_PASS
+            value: 74d73a20a356dc
+          - name: STRIPE_SECRET
+            value: sk_test_bh0QAXn1x8LhONmDvaHLDKAu00sCpS9yxT
+          - name: FRONTEND_URL
+            value: http://frontend-development.apps-crc.testing
+          - name: FRONTEND_IP
+            value: http://172.30.90.125:7777
+          - name: BACKEND_URL
+            value: http://apollo-backend-development.apps-crc.testing
+          - name: BACKEND_IP
+            value: http://172.30.254.196:4444
+          image: image-registry.openshift-image-registry.svc:5000/development/apollo-backend@sha256:83e0d683c0ac0f7cc3f12dcf9746ce92078c23047262d2927fda5efb7f046ae3
+          imagePullPolicy: Always
+          name: apollo-backend
+          ports:
+          - containerPort: 8080
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 1
+    fullyLabeledReplicas: 1
+    observedGeneration: 2
+    readyReplicas: 1
+    replicas: 1
+- apiVersion: v1
+  kind: ReplicationController
+  metadata:
+    annotations:
+      openshift.io/deployer-pod.completed-at: 2020-05-13 18:08:12 +0000 UTC
+      openshift.io/deployer-pod.created-at: 2020-05-13 18:02:54 +0000 UTC
+      openshift.io/deployer-pod.name: frontend-21-deploy
+      openshift.io/deployment-config.latest-version: "21"
+      openshift.io/deployment-config.name: frontend
+      openshift.io/deployment.phase: Complete
+      openshift.io/deployment.replicas: "1"
+      openshift.io/deployment.status-reason: image change
+      openshift.io/encoded-deployment-config: |
+        {"kind":"DeploymentConfig","apiVersion":"apps.openshift.io/v1","metadata":{"name":"frontend","namespace":"development","selfLink":"/apis/apps.openshift.io/v1/namespaces/development/deploymentconfigs/frontend","uid":"c708d120-9086-11ea-8022-0a580a800100","resourceVersion":"2509304","generation":22,"creationTimestamp":"2020-05-07T17:18:32Z","labels":{"app":"frontend"},"annotations":{"app.openshift.io/connects-to":"apollo-backend","openshift.io/generated-by":"OpenShiftNewApp"}},"spec":{"strategy":{"type":"Rolling","rollingParams":{"updatePeriodSeconds":1,"intervalSeconds":1,"timeoutSeconds":600,"maxUnavailable":"25%","maxSurge":"25%"},"resources":{},"activeDeadlineSeconds":21600},"triggers":[{"type":"ConfigChange"},{"type":"ImageChange","imageChangeParams":{"automatic":true,"containerNames":["frontend"],"from":{"kind":"ImageStreamTag","namespace":"development","name":"frontend:latest"},"lastTriggeredImage":"image-registry.openshift-image-registry.svc:5000/development/frontend@sha256:6de954aa82a7fb4956400602dbb12ada3a7aa1062b9335ce3ed817418db53551"}}],"replicas":1,"revisionHistoryLimit":10,"test":false,"selector":{"app":"frontend","deploymentconfig":"frontend"},"template":{"metadata":{"creationTimestamp":null,"labels":{"app":"frontend","deploymentconfig":"frontend"},"annotations":{"openshift.io/generated-by":"OpenShiftNewApp"}},"spec":{"containers":[{"name":"frontend","image":"image-registry.openshift-image-registry.svc:5000/development/frontend@sha256:6de954aa82a7fb4956400602dbb12ada3a7aa1062b9335ce3ed817418db53551","ports":[{"containerPort":8080,"protocol":"TCP"}],"env":[{"name":"prodEndpoint","value":"http://apollo-backend-development.apps-crc.testing"},{"name":"endpoint","value":"http://172.30.254.196:4444"}],"resources":{},"terminationMessagePath":"/dev/termination-log","terminationMessagePolicy":"File","imagePullPolicy":"Always"}],"restartPolicy":"Always","terminationGracePeriodSeconds":30,"dnsPolicy":"ClusterFirst","securityContext":{},"schedulerName":"default-scheduler"}}},"status":{"latestVersion":21,"observedGeneration":21,"replicas":0,"updatedReplicas":0,"availableReplicas":0,"unavailableReplicas":0,"details":{"message":"image change","causes":[{"type":"ImageChange","imageTrigger":{"from":{"kind":"DockerImage","name":"image-registry.openshift-image-registry.svc:5000/development/frontend@sha256:6de954aa82a7fb4956400602dbb12ada3a7aa1062b9335ce3ed817418db53551"}}}]},"conditions":[{"type":"Available","status":"False","lastUpdateTime":"2020-05-13T17:54:17Z","lastTransitionTime":"2020-05-13T17:54:17Z","message":"Deployment config does not have minimum availability."},{"type":"Progressing","status":"False","lastUpdateTime":"2020-05-13T17:54:59Z","lastTransitionTime":"2020-05-13T17:54:59Z","reason":"ProgressDeadlineExceeded","message":"replication controller \"frontend-20\" has failed progressing"}]}}
+    creationTimestamp: "2020-05-13T18:02:53Z"
+    generation: 2
+    labels:
+      app: frontend
+      openshift.io/deployment-config.name: frontend
+    name: frontend-21
+    namespace: development
+    ownerReferences:
+    - apiVersion: apps.openshift.io/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: DeploymentConfig
+      name: frontend
+      uid: c708d120-9086-11ea-8022-0a580a800100
+    resourceVersion: "2510177"
+    selfLink: /api/v1/namespaces/development/replicationcontrollers/frontend-21
+    uid: f7b066df-9543-11ea-be3b-0ef0e3c74fbe
+  spec:
+    replicas: 1
+    selector:
+      app: frontend
+      deployment: frontend-21
+      deploymentconfig: frontend
+    template:
+      metadata:
+        annotations:
+          openshift.io/deployment-config.latest-version: "21"
+          openshift.io/deployment-config.name: frontend
+          openshift.io/deployment.name: frontend-21
+          openshift.io/generated-by: OpenShiftNewApp
+        creationTimestamp: null
+        labels:
+          app: frontend
+          deployment: frontend-21
+          deploymentconfig: frontend
+      spec:
+        containers:
+        - env:
+          - name: prodEndpoint
+            value: http://apollo-backend-development.apps-crc.testing
+          - name: endpoint
+            value: http://172.30.254.196:4444
+          image: image-registry.openshift-image-registry.svc:5000/development/frontend@sha256:6de954aa82a7fb4956400602dbb12ada3a7aa1062b9335ce3ed817418db53551
+          imagePullPolicy: Always
+          name: frontend
+          ports:
+          - containerPort: 8080
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 1
+    fullyLabeledReplicas: 1
+    observedGeneration: 2
+    readyReplicas: 1
+    replicas: 1
+- apiVersion: v1
+  kind: ReplicationController
+  metadata:
+    annotations:
+      openshift.io/deployer-pod.completed-at: 2020-05-13 17:56:30 +0000 UTC
+      openshift.io/deployer-pod.created-at: 2020-05-13 17:54:17 +0000 UTC
+      openshift.io/deployer-pod.name: mongo-1-deploy
+      openshift.io/deployment-config.latest-version: "1"
+      openshift.io/deployment-config.name: mongo
+      openshift.io/deployment.phase: Complete
+      openshift.io/deployment.replicas: "1"
+      openshift.io/deployment.status-reason: config change
+      openshift.io/encoded-deployment-config: |
+        {"kind":"DeploymentConfig","apiVersion":"apps.openshift.io/v1","metadata":{"name":"mongo","namespace":"development","selfLink":"/apis/apps.openshift.io/v1/namespaces/development/deploymentconfigs/mongo","uid":"941226d0-919b-11ea-9b91-0a580a80019f","resourceVersion":"2479703","generation":2,"creationTimestamp":"2020-05-09T02:19:57Z","labels":{"io.kompose.service":"mongo"},"annotations":{"app.openshift.io/connects-to":"prisma","kompose.cmd":"kompose --provider openshift --file docker-compose.yaml convert","kompose.version":"1.19.0 (f63a961c)","kubectl.kubernetes.io/last-applied-configuration":"{\"apiVersion\":\"apps.openshift.io/v1\",\"kind\":\"DeploymentConfig\",\"metadata\":{\"annotations\":{\"kompose.cmd\":\"kompose --provider openshift --file docker-compose.yaml convert\",\"kompose.version\":\"1.19.0 (f63a961c)\"},\"creationTimestamp\":null,\"labels\":{\"io.kompose.service\":\"mongo\"},\"name\":\"mongo\",\"namespace\":\"development\"},\"spec\":{\"replicas\":1,\"selector\":{\"io.kompose.service\":\"mongo\"},\"strategy\":{\"resources\":{},\"type\":\"Recreate\"},\"template\":{\"metadata\":{\"creationTimestamp\":null,\"labels\":{\"io.kompose.service\":\"mongo\"}},\"spec\":{\"containers\":[{\"env\":[{\"name\":\"MONGO_INITDB_ROOT_PASSWORD\",\"value\":\"prisma\"},{\"name\":\"MONGO_INITDB_ROOT_USERNAME\",\"value\":\"prisma\"}],\"image\":\" \",\"name\":\"mongo\",\"ports\":[{\"containerPort\":27017}],\"resources\":{},\"volumeMounts\":[{\"mountPath\":\"/var/lib/mongo\",\"name\":\"mongo\"},{\"mountPath\":\"/data/db\",\"name\":\"mongo-claim1\"},{\"mountPath\":\"/data/configdb\",\"name\":\"mongo-claim2\"}]}],\"restartPolicy\":\"Always\",\"volumes\":[{\"name\":\"mongo\",\"persistentVolumeClaim\":{\"claimName\":\"mongo\"}},{\"name\":\"mongo-claim1\",\"persistentVolumeClaim\":{\"claimName\":\"mongo-claim1\"}},{\"name\":\"mongo-claim2\",\"persistentVolumeClaim\":{\"claimName\":\"mongo-claim2\"}}]}},\"test\":false,\"triggers\":[{\"type\":\"ConfigChange\"},{\"imageChangeParams\":{\"automatic\":true,\"containerNames\":[\"mongo\"],\"from\":{\"kind\":\"ImageStreamTag\",\"name\":\"mongo:3.6\"}},\"type\":\"ImageChange\"}]},\"status\":{}}\n"}},"spec":{"strategy":{"type":"Recreate","recreateParams":{"timeoutSeconds":600},"resources":{},"activeDeadlineSeconds":21600},"triggers":[{"type":"ConfigChange"},{"type":"ImageChange","imageChangeParams":{"automatic":true,"containerNames":["mongo"],"from":{"kind":"ImageStreamTag","namespace":"development","name":"mongo:3.6"},"lastTriggeredImage":"mongo@sha256:685aba1be7c90b6b431b0d4afb569b41e133771a91bbae0898fd69f02da86832"}}],"replicas":1,"revisionHistoryLimit":10,"test":false,"selector":{"io.kompose.service":"mongo"},"template":{"metadata":{"creationTimestamp":null,"labels":{"io.kompose.service":"mongo"}},"spec":{"volumes":[{"name":"mongo","persistentVolumeClaim":{"claimName":"mongo"}},{"name":"mongo-claim1","persistentVolumeClaim":{"claimName":"mongo-claim1"}},{"name":"mongo-claim2","persistentVolumeClaim":{"claimName":"mongo-claim2"}}],"containers":[{"name":"mongo","image":"mongo@sha256:685aba1be7c90b6b431b0d4afb569b41e133771a91bbae0898fd69f02da86832","ports":[{"containerPort":27017,"protocol":"TCP"}],"env":[{"name":"MONGO_INITDB_ROOT_PASSWORD","value":"prisma"},{"name":"MONGO_INITDB_ROOT_USERNAME","value":"prisma"}],"resources":{},"volumeMounts":[{"name":"mongo","mountPath":"/var/lib/mongo"},{"name":"mongo-claim1","mountPath":"/data/db"},{"name":"mongo-claim2","mountPath":"/data/configdb"}],"terminationMessagePath":"/dev/termination-log","terminationMessagePolicy":"File","imagePullPolicy":"IfNotPresent"}],"restartPolicy":"Always","terminationGracePeriodSeconds":30,"dnsPolicy":"ClusterFirst","securityContext":{},"schedulerName":"default-scheduler"}}},"status":{"latestVersion":1,"observedGeneration":2,"replicas":1,"updatedReplicas":1,"availableReplicas":1,"unavailableReplicas":0,"details":{"message":"config change","causes":[{"type":"ConfigChange"}]},"conditions":[{"type":"Progressing","status":"True","lastUpdateTime":"2020-05-12T19:17:46Z","lastTransitionTime":"2020-05-12T19:17:34Z","reason":"NewReplicationControllerAvailable","message":"replication controller \"mongo-1\" successfully rolled out"},{"type":"Available","status":"True","lastUpdateTime":"2020-05-13T14:57:44Z","lastTransitionTime":"2020-05-13T14:57:44Z","message":"Deployment config has minimum availability."}],"readyReplicas":1}}
+    creationTimestamp: "2020-05-13T17:54:17Z"
+    generation: 2
+    labels:
+      io.kompose.service: mongo
+      openshift.io/deployment-config.name: mongo
+    name: mongo-1
+    namespace: development
+    ownerReferences:
+    - apiVersion: apps.openshift.io/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: DeploymentConfig
+      name: mongo
+      uid: 941226d0-919b-11ea-9b91-0a580a80019f
+    resourceVersion: "2508274"
+    selfLink: /api/v1/namespaces/development/replicationcontrollers/mongo-1
+    uid: c41f2ba8-9542-11ea-be3b-0ef0e3c74fbe
+  spec:
+    replicas: 1
+    selector:
+      deployment: mongo-1
+      deploymentconfig: mongo
+      io.kompose.service: mongo
+    template:
+      metadata:
+        annotations:
+          openshift.io/deployment-config.latest-version: "1"
+          openshift.io/deployment-config.name: mongo
+          openshift.io/deployment.name: mongo-1
+        creationTimestamp: null
+        labels:
+          deployment: mongo-1
+          deploymentconfig: mongo
+          io.kompose.service: mongo
+      spec:
+        containers:
+        - env:
+          - name: MONGO_INITDB_ROOT_PASSWORD
+            value: prisma
+          - name: MONGO_INITDB_ROOT_USERNAME
+            value: prisma
+          image: mongo@sha256:685aba1be7c90b6b431b0d4afb569b41e133771a91bbae0898fd69f02da86832
+          imagePullPolicy: IfNotPresent
+          name: mongo
+          ports:
+          - containerPort: 27017
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /var/lib/mongo
+            name: mongo
+          - mountPath: /data/db
+            name: mongo-claim1
+          - mountPath: /data/configdb
+            name: mongo-claim2
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - name: mongo
+          persistentVolumeClaim:
+            claimName: mongo
+        - name: mongo-claim1
+          persistentVolumeClaim:
+            claimName: mongo-claim1
+        - name: mongo-claim2
+          persistentVolumeClaim:
+            claimName: mongo-claim2
+  status:
+    availableReplicas: 1
+    fullyLabeledReplicas: 1
+    observedGeneration: 2
+    readyReplicas: 1
+    replicas: 1
+- apiVersion: v1
+  kind: ReplicationController
+  metadata:
+    annotations:
+      openshift.io/deployer-pod.completed-at: 2020-05-13 03:21:02 +0000 UTC
+      openshift.io/deployer-pod.created-at: 2020-05-13 03:15:38 +0000 UTC
+      openshift.io/deployer-pod.name: myapp-9-deploy
+      openshift.io/deployer-pod.started-at: 2020-05-13 03:20:26 +0000 UTC
+      openshift.io/deployment-config.latest-version: "9"
+      openshift.io/deployment-config.name: myapp
+      openshift.io/deployment.phase: Complete
+      openshift.io/deployment.replicas: "1"
+      openshift.io/deployment.status-reason: image change
+      openshift.io/encoded-deployment-config: |
+        {"kind":"DeploymentConfig","apiVersion":"apps.openshift.io/v1","metadata":{"name":"myapp","namespace":"development","selfLink":"/apis/apps.openshift.io/v1/namespaces/development/deploymentconfigs/myapp","uid":"956b1805-8f37-11ea-a52a-0a580a800012","resourceVersion":"2479831","generation":10,"creationTimestamp":"2020-05-06T01:19:08Z","labels":{"app":"myapp"},"annotations":{"openshift.io/generated-by":"OpenShiftNewApp"}},"spec":{"strategy":{"type":"Rolling","rollingParams":{"updatePeriodSeconds":1,"intervalSeconds":1,"timeoutSeconds":600,"maxUnavailable":"25%","maxSurge":"25%"},"resources":{},"activeDeadlineSeconds":21600},"triggers":[{"type":"ConfigChange"},{"type":"ImageChange","imageChangeParams":{"automatic":true,"containerNames":["myapp"],"from":{"kind":"ImageStreamTag","namespace":"development","name":"myapp:latest"},"lastTriggeredImage":"image-registry.openshift-image-registry.svc:5000/development/myapp@sha256:8eb1782cdfe7f65aaedd4a29c58b4674487436e3f54eff74bd40f8d995d61f2e"}}],"replicas":1,"revisionHistoryLimit":10,"test":false,"selector":{"app":"myapp","deploymentconfig":"myapp"},"template":{"metadata":{"creationTimestamp":null,"labels":{"app":"myapp","deploymentconfig":"myapp"},"annotations":{"openshift.io/generated-by":"OpenShiftNewApp"}},"spec":{"containers":[{"name":"myapp","image":"image-registry.openshift-image-registry.svc:5000/development/myapp@sha256:8eb1782cdfe7f65aaedd4a29c58b4674487436e3f54eff74bd40f8d995d61f2e","ports":[{"containerPort":8080,"protocol":"TCP"}],"resources":{},"terminationMessagePath":"/dev/termination-log","terminationMessagePolicy":"File","imagePullPolicy":"Always"}],"restartPolicy":"Always","terminationGracePeriodSeconds":30,"dnsPolicy":"ClusterFirst","securityContext":{},"schedulerName":"default-scheduler"}}},"status":{"latestVersion":9,"observedGeneration":10,"replicas":1,"updatedReplicas":1,"availableReplicas":1,"unavailableReplicas":0,"details":{"message":"image change","causes":[{"type":"ImageChange","imageTrigger":{"from":{"kind":"DockerImage","name":"image-registry.openshift-image-registry.svc:5000/development/myapp@sha256:8eb1782cdfe7f65aaedd4a29c58b4674487436e3f54eff74bd40f8d995d61f2e"}}}]},"conditions":[{"type":"Progressing","status":"True","lastUpdateTime":"2020-05-13T03:21:03Z","lastTransitionTime":"2020-05-13T03:21:00Z","reason":"NewReplicationControllerAvailable","message":"replication controller \"myapp-9\" successfully rolled out"},{"type":"Available","status":"True","lastUpdateTime":"2020-05-13T14:57:53Z","lastTransitionTime":"2020-05-13T14:57:53Z","message":"Deployment config has minimum availability."}],"readyReplicas":1}}
+    creationTimestamp: "2020-05-13T17:54:17Z"
+    generation: 2
+    labels:
+      app: myapp
+      openshift.io/deployment-config.name: myapp
+    name: myapp-9
+    namespace: development
+    ownerReferences:
+    - apiVersion: apps.openshift.io/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: DeploymentConfig
+      name: myapp
+      uid: 956b1805-8f37-11ea-a52a-0a580a800012
+    resourceVersion: "2508194"
+    selfLink: /api/v1/namespaces/development/replicationcontrollers/myapp-9
+    uid: c4216845-9542-11ea-be3b-0ef0e3c74fbe
+  spec:
+    replicas: 1
+    selector:
+      app: myapp
+      deployment: myapp-9
+      deploymentconfig: myapp
+    template:
+      metadata:
+        annotations:
+          openshift.io/deployment-config.latest-version: "9"
+          openshift.io/deployment-config.name: myapp
+          openshift.io/deployment.name: myapp-9
+          openshift.io/generated-by: OpenShiftNewApp
+        creationTimestamp: null
+        labels:
+          app: myapp
+          deployment: myapp-9
+          deploymentconfig: myapp
+      spec:
+        containers:
+        - image: image-registry.openshift-image-registry.svc:5000/development/myapp@sha256:8eb1782cdfe7f65aaedd4a29c58b4674487436e3f54eff74bd40f8d995d61f2e
+          imagePullPolicy: Always
+          name: myapp
+          ports:
+          - containerPort: 8080
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 1
+    fullyLabeledReplicas: 1
+    observedGeneration: 2
+    readyReplicas: 1
+    replicas: 1
+- apiVersion: v1
+  kind: ReplicationController
+  metadata:
+    annotations:
+      openshift.io/deployer-pod.completed-at: 2020-05-13 17:56:30 +0000 UTC
+      openshift.io/deployer-pod.created-at: 2020-05-13 17:54:17 +0000 UTC
+      openshift.io/deployer-pod.name: prisma-1-deploy
+      openshift.io/deployment-config.latest-version: "1"
+      openshift.io/deployment-config.name: prisma
+      openshift.io/deployment.phase: Complete
+      openshift.io/deployment.replicas: "1"
+      openshift.io/deployment.status-reason: config change
+      openshift.io/encoded-deployment-config: |
+        {"kind":"DeploymentConfig","apiVersion":"apps.openshift.io/v1","metadata":{"name":"prisma","namespace":"development","selfLink":"/apis/apps.openshift.io/v1/namespaces/development/deploymentconfigs/prisma","uid":"11bfeead-919e-11ea-9b91-0a580a80019f","resourceVersion":"2479652","generation":2,"creationTimestamp":"2020-05-09T02:37:47Z","labels":{"io.kompose.service":"prisma"},"annotations":{"app.openshift.io/connects-to":"mongo,apollo-backend","kompose.cmd":"kompose --provider openshift --file docker-compose.yaml convert","kompose.version":"1.19.0 (f63a961c)","kubectl.kubernetes.io/last-applied-configuration":"{\"apiVersion\":\"apps.openshift.io/v1\",\"kind\":\"DeploymentConfig\",\"metadata\":{\"annotations\":{\"kompose.cmd\":\"kompose --provider openshift --file docker-compose.yaml convert\",\"kompose.version\":\"1.19.0 (f63a961c)\"},\"creationTimestamp\":null,\"labels\":{\"io.kompose.service\":\"prisma\"},\"name\":\"prisma\",\"namespace\":\"development\"},\"spec\":{\"replicas\":1,\"selector\":{\"io.kompose.service\":\"prisma\"},\"strategy\":{\"resources\":{}},\"template\":{\"metadata\":{\"creationTimestamp\":null,\"labels\":{\"io.kompose.service\":\"prisma\"}},\"spec\":{\"containers\":[{\"env\":[{\"name\":\"PRISMA_CONFIG\",\"value\":\"port: 4466\\ndatabases:\\n  default:\\n    connector: mongo\\n    uri: mongodb://prisma:prisma@mongo\\n\"}],\"image\":\" \",\"name\":\"prisma\",\"ports\":[{\"containerPort\":4466}],\"resources\":{}}],\"restartPolicy\":\"Always\"}},\"test\":false,\"triggers\":[{\"type\":\"ConfigChange\"},{\"imageChangeParams\":{\"automatic\":true,\"containerNames\":[\"prisma\"],\"from\":{\"kind\":\"ImageStreamTag\",\"name\":\"prisma:1.34\"}},\"type\":\"ImageChange\"}]},\"status\":{}}\n"}},"spec":{"strategy":{"type":"Rolling","rollingParams":{"updatePeriodSeconds":1,"intervalSeconds":1,"timeoutSeconds":600,"maxUnavailable":"25%","maxSurge":"25%"},"resources":{},"activeDeadlineSeconds":21600},"triggers":[{"type":"ConfigChange"},{"type":"ImageChange","imageChangeParams":{"automatic":true,"containerNames":["prisma"],"from":{"kind":"ImageStreamTag","namespace":"development","name":"prisma:1.34"},"lastTriggeredImage":"prismagraphql/prisma@sha256:de3e5a9d44c4e0cd24af9a9d435b8893a11a494d408d9f610fcfccfee1f99d28"}}],"replicas":1,"revisionHistoryLimit":10,"test":false,"selector":{"io.kompose.service":"prisma"},"template":{"metadata":{"creationTimestamp":null,"labels":{"io.kompose.service":"prisma"}},"spec":{"containers":[{"name":"prisma","image":"prismagraphql/prisma@sha256:de3e5a9d44c4e0cd24af9a9d435b8893a11a494d408d9f610fcfccfee1f99d28","ports":[{"containerPort":4466,"protocol":"TCP"}],"env":[{"name":"PRISMA_CONFIG","value":"port: 4466\ndatabases:\n  default:\n    connector: mongo\n    uri: mongodb://prisma:prisma@mongo\n"}],"resources":{},"terminationMessagePath":"/dev/termination-log","terminationMessagePolicy":"File","imagePullPolicy":"IfNotPresent"}],"restartPolicy":"Always","terminationGracePeriodSeconds":30,"dnsPolicy":"ClusterFirst","securityContext":{},"schedulerName":"default-scheduler"}}},"status":{"latestVersion":1,"observedGeneration":2,"replicas":1,"updatedReplicas":1,"availableReplicas":1,"unavailableReplicas":0,"details":{"message":"config change","causes":[{"type":"ConfigChange"}]},"conditions":[{"type":"Progressing","status":"True","lastUpdateTime":"2020-05-12T19:17:48Z","lastTransitionTime":"2020-05-12T19:17:48Z","reason":"NewReplicationControllerAvailable","message":"replication controller \"prisma-1\" successfully rolled out"},{"type":"Available","status":"True","lastUpdateTime":"2020-05-13T14:57:40Z","lastTransitionTime":"2020-05-13T14:57:40Z","message":"Deployment config has minimum availability."}],"readyReplicas":1}}
+    creationTimestamp: "2020-05-13T17:54:17Z"
+    generation: 2
+    labels:
+      io.kompose.service: prisma
+      openshift.io/deployment-config.name: prisma
+    name: prisma-1
+    namespace: development
+    ownerReferences:
+    - apiVersion: apps.openshift.io/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: DeploymentConfig
+      name: prisma
+      uid: 11bfeead-919e-11ea-9b91-0a580a80019f
+    resourceVersion: "2508277"
+    selfLink: /api/v1/namespaces/development/replicationcontrollers/prisma-1
+    uid: c423d8d3-9542-11ea-be3b-0ef0e3c74fbe
+  spec:
+    replicas: 1
+    selector:
+      deployment: prisma-1
+      deploymentconfig: prisma
+      io.kompose.service: prisma
+    template:
+      metadata:
+        annotations:
+          openshift.io/deployment-config.latest-version: "1"
+          openshift.io/deployment-config.name: prisma
+          openshift.io/deployment.name: prisma-1
+        creationTimestamp: null
+        labels:
+          deployment: prisma-1
+          deploymentconfig: prisma
+          io.kompose.service: prisma
+      spec:
+        containers:
+        - env:
+          - name: PRISMA_CONFIG
+            value: |
+              port: 4466
+              databases:
+                default:
+                  connector: mongo
+                  uri: mongodb://prisma:prisma@mongo
+          image: prismagraphql/prisma@sha256:de3e5a9d44c4e0cd24af9a9d435b8893a11a494d408d9f610fcfccfee1f99d28
+          imagePullPolicy: IfNotPresent
+          name: prisma
+          ports:
+          - containerPort: 4466
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 1
+    fullyLabeledReplicas: 1
+    observedGeneration: 2
+    readyReplicas: 1
+    replicas: 1
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: "2020-05-09T15:37:39Z"
+    labels:
+      app: apollo-backend
+    name: apollo-backend
+    namespace: development
+    resourceVersion: "2085122"
+    selfLink: /api/v1/namespaces/development/services/apollo-backend
+    uid: 03a1e233-920b-11ea-9b5b-0ef0e3c74fbe
+  spec:
+    clusterIP: 172.30.254.196
+    ports:
+    - name: 4444-tcp
+      port: 4444
+      protocol: TCP
+      targetPort: 4444
+    selector:
+      app: apollo-backend
+      deploymentconfig: apollo-backend
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: "2020-05-07T17:18:32Z"
+    labels:
+      app: frontend
+    name: frontend
+    namespace: development
+    resourceVersion: "1993591"
+    selfLink: /api/v1/namespaces/development/services/frontend
+    uid: c70abdec-9086-11ea-9ae3-0ef0e3c74fbe
+  spec:
+    clusterIP: 172.30.90.125
+    ports:
+    - name: 7777-tcp
+      port: 7777
+      protocol: TCP
+      targetPort: 7777
+    selector:
+      app: frontend
+      deploymentconfig: frontend
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      kompose.cmd: kompose --provider openshift --file docker-compose.yaml convert
+      kompose.version: 1.19.0 (f63a961c)
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{"kompose.cmd":"kompose --provider openshift --file docker-compose.yaml convert","kompose.version":"1.19.0 (f63a961c)"},"creationTimestamp":null,"labels":{"io.kompose.service":"mongo"},"name":"mongo","namespace":"development"},"spec":{"ports":[{"name":"27017","port":27017,"targetPort":27017}],"selector":{"io.kompose.service":"mongo"}},"status":{"loadBalancer":{}}}
+    creationTimestamp: "2020-05-09T02:20:37Z"
+    labels:
+      io.kompose.service: mongo
+    name: mongo
+    namespace: development
+    resourceVersion: "1991279"
+    selfLink: /api/v1/namespaces/development/services/mongo
+    uid: abb71578-919b-11ea-ae52-0ef0e3c74fbe
+  spec:
+    clusterIP: 172.30.79.138
+    ports:
+    - name: "27017"
+      port: 27017
+      protocol: TCP
+      targetPort: 27017
+    selector:
+      io.kompose.service: mongo
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: "2020-05-06T01:19:08Z"
+    labels:
+      app: myapp
+    name: myapp
+    namespace: development
+    resourceVersion: "1591843"
+    selfLink: /api/v1/namespaces/development/services/myapp
+    uid: 956fb8e6-8f37-11ea-ae4e-0ef0e3c74fbe
+  spec:
+    clusterIP: 172.30.67.149
+    ports:
+    - name: 7777-tcp
+      port: 7777
+      protocol: TCP
+      targetPort: 7777
+    selector:
+      app: myapp
+      deploymentconfig: myapp
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      kompose.cmd: kompose --provider openshift --file docker-compose.yaml convert
+      kompose.version: 1.19.0 (f63a961c)
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{"kompose.cmd":"kompose --provider openshift --file docker-compose.yaml convert","kompose.version":"1.19.0 (f63a961c)"},"creationTimestamp":null,"labels":{"io.kompose.service":"prisma"},"name":"prisma","namespace":"development"},"spec":{"ports":[{"name":"4466","port":4466,"targetPort":4466}],"selector":{"io.kompose.service":"prisma"}},"status":{"loadBalancer":{}}}
+    creationTimestamp: "2020-05-09T02:38:04Z"
+    labels:
+      io.kompose.service: prisma
+    name: prisma
+    namespace: development
+    resourceVersion: "1994058"
+    selfLink: /api/v1/namespaces/development/services/prisma
+    uid: 1bee62fd-919e-11ea-ae52-0ef0e3c74fbe
+  spec:
+    clusterIP: 172.30.241.100
+    ports:
+    - name: "4466"
+      port: 4466
+      protocol: TCP
+      targetPort: 4466
+    selector:
+      io.kompose.service: prisma
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: apps.openshift.io/v1
+  kind: DeploymentConfig
+  metadata:
+    annotations:
+      app.openshift.io/connects-to: prisma,frontend
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"apps.openshift.io/v1","kind":"DeploymentConfig","metadata":{"annotations":{"app.openshift.io/connects-to":"prisma,frontend","openshift.io/generated-by":"OpenShiftNewApp"},"creationTimestamp":"2020-05-07T17:31:05Z","generation":12,"labels":{"app":"apollo-backend"},"name":"apollo-backend","namespace":"development","resourceVersion":"2036704","selfLink":"/apis/apps.openshift.io/v1/namespaces/development/deploymentconfigs/apollo-backend","uid":"876ee4f1-9088-11ea-8022-0a580a800100"},"spec":{"replicas":1,"revisionHistoryLimit":10,"selector":{"app":"apollo-backend","deploymentconfig":"apollo-backend"},"strategy":{"activeDeadlineSeconds":21600,"resources":{},"rollingParams":{"intervalSeconds":1,"maxSurge":"25%","maxUnavailable":"25%","timeoutSeconds":600,"updatePeriodSeconds":1},"type":"Rolling"},"template":{"metadata":{"annotations":{"openshift.io/generated-by":"OpenShiftNewApp"},"creationTimestamp":null,"labels":{"app":"apollo-backend","deploymentconfig":"apollo-backend"}},"spec":{"containers":[{"env":[{"name":"PRISMA_ENDPOINT","value":"\"http://172.30.241.100:4466\""},{"name":"PRISMA_SECRET","value":"prisma"},{"name":"APP_SECRET","value":"prisma"},{"name":"PORT","value":"4444"}],"image":"image-registry.openshift-image-registry.svc:5000/development/apollo-backend@sha256:2585d28911caac8edb018d8fd3076ca8e6ff65a9920cc10303c56875ed0ccc57","imagePullPolicy":"Always","name":"apollo-backend","ports":[{"containerPort":8080,"protocol":"TCP"}],"resources":{},"terminationMessagePath":"/dev/termination-log","terminationMessagePolicy":"File"}],"dnsPolicy":"ClusterFirst","restartPolicy":"Always","schedulerName":"default-scheduler","securityContext":{},"terminationGracePeriodSeconds":30}},"test":false,"triggers":[{"type":"ConfigChange"},{"imageChangeParams":{"automatic":true,"containerNames":["apollo-backend"],"from":{"kind":"ImageStreamTag","name":"apollo-backend:latest","namespace":"development"},"lastTriggeredImage":"image-registry.openshift-image-registry.svc:5000/development/apollo-backend@sha256:2585d28911caac8edb018d8fd3076ca8e6ff65a9920cc10303c56875ed0ccc57"},"type":"ImageChange"}]},"status":{"availableReplicas":0,"conditions":[{"lastTransitionTime":"2020-05-09T15:12:25Z","lastUpdateTime":"2020-05-09T15:12:31Z","message":"replication controller \"apollo-backend-11\" successfully rolled out","reason":"NewReplicationControllerAvailable","status":"True","type":"Progressing"},{"lastTransitionTime":"2020-05-09T15:23:34Z","lastUpdateTime":"2020-05-09T15:23:34Z","message":"Deployment config does not have minimum availability.","status":"False","type":"Available"}],"details":{"causes":[{"imageTrigger":{"from":{"kind":"DockerImage","name":"image-registry.openshift-image-registry.svc:5000/development/apollo-backend@sha256:2585d28911caac8edb018d8fd3076ca8e6ff65a9920cc10303c56875ed0ccc57"}},"type":"ImageChange"}],"message":"image change"},"latestVersion":11,"observedGeneration":12,"replicas":1,"unavailableReplicas":1,"updatedReplicas":1}}
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: "2020-05-09T15:29:46Z"
+    generation: 49
+    labels:
+      app: apollo-backend
+    name: apollo-backend
+    namespace: development
+    resourceVersion: "2508178"
+    selfLink: /apis/apps.openshift.io/v1/namespaces/development/deploymentconfigs/apollo-backend
+    uid: e9b46f6b-9209-11ea-a9f7-0a580a8001f6
+  spec:
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      app: apollo-backend
+      deploymentconfig: apollo-backend
+    strategy:
+      activeDeadlineSeconds: 21600
+      resources: {}
+      rollingParams:
+        intervalSeconds: 1
+        maxSurge: 25%
+        maxUnavailable: 25%
+        timeoutSeconds: 600
+        updatePeriodSeconds: 1
+      type: Rolling
+    template:
+      metadata:
+        annotations:
+          openshift.io/generated-by: OpenShiftNewApp
+        creationTimestamp: null
+        labels:
+          app: apollo-backend
+          deploymentconfig: apollo-backend
+      spec:
+        containers:
+        - env:
+          - name: PRISMA_ENDPOINT
+            value: http://172.30.241.100:4466
+          - name: PRISMA_SECRET
+            value: prisma
+          - name: APP_SECRET
+            value: prisma
+          - name: PORT
+            value: "4444"
+          - name: PRISMA_ENDPOINT_end
+            value: http://prisma-development.apps-crc.testing:4466
+          - name: WHITELIST
+            value: http://prisma-development.apps-crc.testing, prisma-development.apps-crc.testing,
+              apollo-backend-development.apps-crc.testing, http://apollo-backend-development.apps-crc.testing,
+              frontend-development.apps-crc.testing, http://frontend-development.apps-crc.testing,
+              http://checkout.stripe.com/
+          - name: MAIL_HOST
+            value: smtp.mailtrap.io
+          - name: MAIL_PORT
+            value: "2525"
+          - name: MAIL_USER
+            value: 2af1c2bddf929f
+          - name: MAIL_PASS
+            value: 74d73a20a356dc
+          - name: STRIPE_SECRET
+            value: sk_test_bh0QAXn1x8LhONmDvaHLDKAu00sCpS9yxT
+          - name: FRONTEND_URL
+            value: http://frontend-development.apps-crc.testing
+          - name: FRONTEND_IP
+            value: http://172.30.90.125:7777
+          - name: BACKEND_URL
+            value: http://apollo-backend-development.apps-crc.testing
+          - name: BACKEND_IP
+            value: http://172.30.254.196:4444
+          image: image-registry.openshift-image-registry.svc:5000/development/apollo-backend@sha256:83e0d683c0ac0f7cc3f12dcf9746ce92078c23047262d2927fda5efb7f046ae3
+          imagePullPolicy: Always
+          name: apollo-backend
+          ports:
+          - containerPort: 8080
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+    test: false
+    triggers:
+    - type: ConfigChange
+    - imageChangeParams:
+        automatic: true
+        containerNames:
+        - apollo-backend
+        from:
+          kind: ImageStreamTag
+          name: apollo-backend:latest
+          namespace: development
+        lastTriggeredImage: image-registry.openshift-image-registry.svc:5000/development/apollo-backend@sha256:83e0d683c0ac0f7cc3f12dcf9746ce92078c23047262d2927fda5efb7f046ae3
+      type: ImageChange
+  status:
+    availableReplicas: 1
+    conditions:
+    - lastTransitionTime: "2020-05-13T01:33:08Z"
+      lastUpdateTime: "2020-05-13T17:54:17Z"
+      message: replication controller "apollo-backend-45" successfully rolled out
+      reason: NewReplicationControllerAvailable
+      status: "True"
+      type: Progressing
+    - lastTransitionTime: "2020-05-13T17:56:16Z"
+      lastUpdateTime: "2020-05-13T17:56:16Z"
+      message: Deployment config has minimum availability.
+      status: "True"
+      type: Available
+    details:
+      causes:
+      - imageTrigger:
+          from:
+            kind: DockerImage
+            name: image-registry.openshift-image-registry.svc:5000/development/apollo-backend@sha256:83e0d683c0ac0f7cc3f12dcf9746ce92078c23047262d2927fda5efb7f046ae3
+        type: ImageChange
+      message: image change
+    latestVersion: 45
+    observedGeneration: 49
+    readyReplicas: 1
+    replicas: 1
+    unavailableReplicas: 0
+    updatedReplicas: 1
+- apiVersion: apps.openshift.io/v1
+  kind: DeploymentConfig
+  metadata:
+    annotations:
+      app.openshift.io/connects-to: apollo-backend
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: "2020-05-07T17:18:32Z"
+    generation: 22
+    labels:
+      app: frontend
+    name: frontend
+    namespace: development
+    resourceVersion: "2510178"
+    selfLink: /apis/apps.openshift.io/v1/namespaces/development/deploymentconfigs/frontend
+    uid: c708d120-9086-11ea-8022-0a580a800100
+  spec:
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      app: frontend
+      deploymentconfig: frontend
+    strategy:
+      activeDeadlineSeconds: 21600
+      resources: {}
+      rollingParams:
+        intervalSeconds: 1
+        maxSurge: 25%
+        maxUnavailable: 25%
+        timeoutSeconds: 600
+        updatePeriodSeconds: 1
+      type: Rolling
+    template:
+      metadata:
+        annotations:
+          openshift.io/generated-by: OpenShiftNewApp
+        creationTimestamp: null
+        labels:
+          app: frontend
+          deploymentconfig: frontend
+      spec:
+        containers:
+        - env:
+          - name: prodEndpoint
+            value: http://apollo-backend-development.apps-crc.testing
+          - name: endpoint
+            value: http://172.30.254.196:4444
+          image: image-registry.openshift-image-registry.svc:5000/development/frontend@sha256:6de954aa82a7fb4956400602dbb12ada3a7aa1062b9335ce3ed817418db53551
+          imagePullPolicy: Always
+          name: frontend
+          ports:
+          - containerPort: 8080
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+    test: false
+    triggers:
+    - type: ConfigChange
+    - imageChangeParams:
+        automatic: true
+        containerNames:
+        - frontend
+        from:
+          kind: ImageStreamTag
+          name: frontend:latest
+          namespace: development
+        lastTriggeredImage: image-registry.openshift-image-registry.svc:5000/development/frontend@sha256:6de954aa82a7fb4956400602dbb12ada3a7aa1062b9335ce3ed817418db53551
+      type: ImageChange
+  status:
+    availableReplicas: 1
+    conditions:
+    - lastTransitionTime: "2020-05-13T18:08:12Z"
+      lastUpdateTime: "2020-05-13T18:08:12Z"
+      message: Deployment config has minimum availability.
+      status: "True"
+      type: Available
+    - lastTransitionTime: "2020-05-13T18:07:52Z"
+      lastUpdateTime: "2020-05-13T18:08:13Z"
+      message: replication controller "frontend-21" successfully rolled out
+      reason: NewReplicationControllerAvailable
+      status: "True"
+      type: Progressing
+    details:
+      causes:
+      - imageTrigger:
+          from:
+            kind: DockerImage
+            name: image-registry.openshift-image-registry.svc:5000/development/frontend@sha256:6de954aa82a7fb4956400602dbb12ada3a7aa1062b9335ce3ed817418db53551
+        type: ImageChange
+      message: image change
+    latestVersion: 21
+    observedGeneration: 22
+    readyReplicas: 1
+    replicas: 1
+    unavailableReplicas: 0
+    updatedReplicas: 1
+- apiVersion: apps.openshift.io/v1
+  kind: DeploymentConfig
+  metadata:
+    annotations:
+      app.openshift.io/connects-to: prisma
+      kompose.cmd: kompose --provider openshift --file docker-compose.yaml convert
+      kompose.version: 1.19.0 (f63a961c)
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"apps.openshift.io/v1","kind":"DeploymentConfig","metadata":{"annotations":{"kompose.cmd":"kompose --provider openshift --file docker-compose.yaml convert","kompose.version":"1.19.0 (f63a961c)"},"creationTimestamp":null,"labels":{"io.kompose.service":"mongo"},"name":"mongo","namespace":"development"},"spec":{"replicas":1,"selector":{"io.kompose.service":"mongo"},"strategy":{"resources":{},"type":"Recreate"},"template":{"metadata":{"creationTimestamp":null,"labels":{"io.kompose.service":"mongo"}},"spec":{"containers":[{"env":[{"name":"MONGO_INITDB_ROOT_PASSWORD","value":"prisma"},{"name":"MONGO_INITDB_ROOT_USERNAME","value":"prisma"}],"image":" ","name":"mongo","ports":[{"containerPort":27017}],"resources":{},"volumeMounts":[{"mountPath":"/var/lib/mongo","name":"mongo"},{"mountPath":"/data/db","name":"mongo-claim1"},{"mountPath":"/data/configdb","name":"mongo-claim2"}]}],"restartPolicy":"Always","volumes":[{"name":"mongo","persistentVolumeClaim":{"claimName":"mongo"}},{"name":"mongo-claim1","persistentVolumeClaim":{"claimName":"mongo-claim1"}},{"name":"mongo-claim2","persistentVolumeClaim":{"claimName":"mongo-claim2"}}]}},"test":false,"triggers":[{"type":"ConfigChange"},{"imageChangeParams":{"automatic":true,"containerNames":["mongo"],"from":{"kind":"ImageStreamTag","name":"mongo:3.6"}},"type":"ImageChange"}]},"status":{}}
+    creationTimestamp: "2020-05-09T02:19:57Z"
+    generation: 2
+    labels:
+      io.kompose.service: mongo
+    name: mongo
+    namespace: development
+    resourceVersion: "2508275"
+    selfLink: /apis/apps.openshift.io/v1/namespaces/development/deploymentconfigs/mongo
+    uid: 941226d0-919b-11ea-9b91-0a580a80019f
+  spec:
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      io.kompose.service: mongo
+    strategy:
+      activeDeadlineSeconds: 21600
+      recreateParams:
+        timeoutSeconds: 600
+      resources: {}
+      type: Recreate
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          io.kompose.service: mongo
+      spec:
+        containers:
+        - env:
+          - name: MONGO_INITDB_ROOT_PASSWORD
+            value: prisma
+          - name: MONGO_INITDB_ROOT_USERNAME
+            value: prisma
+          image: mongo@sha256:685aba1be7c90b6b431b0d4afb569b41e133771a91bbae0898fd69f02da86832
+          imagePullPolicy: IfNotPresent
+          name: mongo
+          ports:
+          - containerPort: 27017
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /var/lib/mongo
+            name: mongo
+          - mountPath: /data/db
+            name: mongo-claim1
+          - mountPath: /data/configdb
+            name: mongo-claim2
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - name: mongo
+          persistentVolumeClaim:
+            claimName: mongo
+        - name: mongo-claim1
+          persistentVolumeClaim:
+            claimName: mongo-claim1
+        - name: mongo-claim2
+          persistentVolumeClaim:
+            claimName: mongo-claim2
+    test: false
+    triggers:
+    - type: ConfigChange
+    - imageChangeParams:
+        automatic: true
+        containerNames:
+        - mongo
+        from:
+          kind: ImageStreamTag
+          name: mongo:3.6
+          namespace: development
+        lastTriggeredImage: mongo@sha256:685aba1be7c90b6b431b0d4afb569b41e133771a91bbae0898fd69f02da86832
+      type: ImageChange
+  status:
+    availableReplicas: 1
+    conditions:
+    - lastTransitionTime: "2020-05-13T17:56:29Z"
+      lastUpdateTime: "2020-05-13T17:56:29Z"
+      message: Deployment config has minimum availability.
+      status: "True"
+      type: Available
+    - lastTransitionTime: "2020-05-13T17:56:21Z"
+      lastUpdateTime: "2020-05-13T17:56:30Z"
+      message: replication controller "mongo-1" successfully rolled out
+      reason: NewReplicationControllerAvailable
+      status: "True"
+      type: Progressing
+    details:
+      causes:
+      - type: ConfigChange
+      message: config change
+    latestVersion: 1
+    observedGeneration: 2
+    readyReplicas: 1
+    replicas: 1
+    unavailableReplicas: 0
+    updatedReplicas: 1
+- apiVersion: apps.openshift.io/v1
+  kind: DeploymentConfig
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: "2020-05-06T01:19:08Z"
+    generation: 10
+    labels:
+      app: myapp
+    name: myapp
+    namespace: development
+    resourceVersion: "2508195"
+    selfLink: /apis/apps.openshift.io/v1/namespaces/development/deploymentconfigs/myapp
+    uid: 956b1805-8f37-11ea-a52a-0a580a800012
+  spec:
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      app: myapp
+      deploymentconfig: myapp
+    strategy:
+      activeDeadlineSeconds: 21600
+      resources: {}
+      rollingParams:
+        intervalSeconds: 1
+        maxSurge: 25%
+        maxUnavailable: 25%
+        timeoutSeconds: 600
+        updatePeriodSeconds: 1
+      type: Rolling
+    template:
+      metadata:
+        annotations:
+          openshift.io/generated-by: OpenShiftNewApp
+        creationTimestamp: null
+        labels:
+          app: myapp
+          deploymentconfig: myapp
+      spec:
+        containers:
+        - image: image-registry.openshift-image-registry.svc:5000/development/myapp@sha256:8eb1782cdfe7f65aaedd4a29c58b4674487436e3f54eff74bd40f8d995d61f2e
+          imagePullPolicy: Always
+          name: myapp
+          ports:
+          - containerPort: 8080
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+    test: false
+    triggers:
+    - type: ConfigChange
+    - imageChangeParams:
+        automatic: true
+        containerNames:
+        - myapp
+        from:
+          kind: ImageStreamTag
+          name: myapp:latest
+          namespace: development
+        lastTriggeredImage: image-registry.openshift-image-registry.svc:5000/development/myapp@sha256:8eb1782cdfe7f65aaedd4a29c58b4674487436e3f54eff74bd40f8d995d61f2e
+      type: ImageChange
+  status:
+    availableReplicas: 1
+    conditions:
+    - lastTransitionTime: "2020-05-13T03:21:00Z"
+      lastUpdateTime: "2020-05-13T17:54:18Z"
+      message: replication controller "myapp-9" successfully rolled out
+      reason: NewReplicationControllerAvailable
+      status: "True"
+      type: Progressing
+    - lastTransitionTime: "2020-05-13T17:56:17Z"
+      lastUpdateTime: "2020-05-13T17:56:17Z"
+      message: Deployment config has minimum availability.
+      status: "True"
+      type: Available
+    details:
+      causes:
+      - imageTrigger:
+          from:
+            kind: DockerImage
+            name: image-registry.openshift-image-registry.svc:5000/development/myapp@sha256:8eb1782cdfe7f65aaedd4a29c58b4674487436e3f54eff74bd40f8d995d61f2e
+        type: ImageChange
+      message: image change
+    latestVersion: 9
+    observedGeneration: 10
+    readyReplicas: 1
+    replicas: 1
+    unavailableReplicas: 0
+    updatedReplicas: 1
+- apiVersion: apps.openshift.io/v1
+  kind: DeploymentConfig
+  metadata:
+    annotations:
+      app.openshift.io/connects-to: mongo,apollo-backend
+      kompose.cmd: kompose --provider openshift --file docker-compose.yaml convert
+      kompose.version: 1.19.0 (f63a961c)
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"apps.openshift.io/v1","kind":"DeploymentConfig","metadata":{"annotations":{"kompose.cmd":"kompose --provider openshift --file docker-compose.yaml convert","kompose.version":"1.19.0 (f63a961c)"},"creationTimestamp":null,"labels":{"io.kompose.service":"prisma"},"name":"prisma","namespace":"development"},"spec":{"replicas":1,"selector":{"io.kompose.service":"prisma"},"strategy":{"resources":{}},"template":{"metadata":{"creationTimestamp":null,"labels":{"io.kompose.service":"prisma"}},"spec":{"containers":[{"env":[{"name":"PRISMA_CONFIG","value":"port: 4466\ndatabases:\n  default:\n    connector: mongo\n    uri: mongodb://prisma:prisma@mongo\n"}],"image":" ","name":"prisma","ports":[{"containerPort":4466}],"resources":{}}],"restartPolicy":"Always"}},"test":false,"triggers":[{"type":"ConfigChange"},{"imageChangeParams":{"automatic":true,"containerNames":["prisma"],"from":{"kind":"ImageStreamTag","name":"prisma:1.34"}},"type":"ImageChange"}]},"status":{}}
+    creationTimestamp: "2020-05-09T02:37:47Z"
+    generation: 2
+    labels:
+      io.kompose.service: prisma
+    name: prisma
+    namespace: development
+    resourceVersion: "2508278"
+    selfLink: /apis/apps.openshift.io/v1/namespaces/development/deploymentconfigs/prisma
+    uid: 11bfeead-919e-11ea-9b91-0a580a80019f
+  spec:
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      io.kompose.service: prisma
+    strategy:
+      activeDeadlineSeconds: 21600
+      resources: {}
+      rollingParams:
+        intervalSeconds: 1
+        maxSurge: 25%
+        maxUnavailable: 25%
+        timeoutSeconds: 600
+        updatePeriodSeconds: 1
+      type: Rolling
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          io.kompose.service: prisma
+      spec:
+        containers:
+        - env:
+          - name: PRISMA_CONFIG
+            value: |
+              port: 4466
+              databases:
+                default:
+                  connector: mongo
+                  uri: mongodb://prisma:prisma@mongo
+          image: prismagraphql/prisma@sha256:de3e5a9d44c4e0cd24af9a9d435b8893a11a494d408d9f610fcfccfee1f99d28
+          imagePullPolicy: IfNotPresent
+          name: prisma
+          ports:
+          - containerPort: 4466
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+    test: false
+    triggers:
+    - type: ConfigChange
+    - imageChangeParams:
+        automatic: true
+        containerNames:
+        - prisma
+        from:
+          kind: ImageStreamTag
+          name: prisma:1.34
+          namespace: development
+        lastTriggeredImage: prismagraphql/prisma@sha256:de3e5a9d44c4e0cd24af9a9d435b8893a11a494d408d9f610fcfccfee1f99d28
+      type: ImageChange
+  status:
+    availableReplicas: 1
+    conditions:
+    - lastTransitionTime: "2020-05-13T17:56:29Z"
+      lastUpdateTime: "2020-05-13T17:56:29Z"
+      message: Deployment config has minimum availability.
+      status: "True"
+      type: Available
+    - lastTransitionTime: "2020-05-13T17:56:21Z"
+      lastUpdateTime: "2020-05-13T17:56:30Z"
+      message: replication controller "prisma-1" successfully rolled out
+      reason: NewReplicationControllerAvailable
+      status: "True"
+      type: Progressing
+    details:
+      causes:
+      - type: ConfigChange
+      message: config change
+    latestVersion: 1
+    observedGeneration: 2
+    readyReplicas: 1
+    replicas: 1
+    unavailableReplicas: 0
+    updatedReplicas: 1
+- apiVersion: build.openshift.io/v1
+  kind: BuildConfig
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"build.openshift.io/v1","kind":"BuildConfig","metadata":{"annotations":{"openshift.io/generated-by":"OpenShiftNewApp"},"creationTimestamp":"2020-05-07T17:31:05Z","labels":{"app":"apollo-backend"},"name":"apollo-backend","namespace":"development","resourceVersion":"2034494","selfLink":"/apis/build.openshift.io/v1/namespaces/development/buildconfigs/apollo-backend","uid":"876bb216-9088-11ea-8022-0a580a800100"},"spec":{"failedBuildsHistoryLimit":5,"nodeSelector":null,"output":{"to":{"kind":"ImageStreamTag","name":"apollo-backend:latest"}},"postCommit":{},"resources":{},"runPolicy":"Serial","source":{"git":{"uri":"https://github.com/stephmen/ApolloBackend"},"type":"Git"},"strategy":{"sourceStrategy":{"env":[{"name":"PRISMA_ENDPOINT","value":"\"http://172.30.241.100:4466\""},{"name":"PRISMA_SECRET","value":"\"prisma\""},{"name":"APP_SECRET","value":"\"prisma\""},{"name":"WHITELIST","value":"[\"http://prisma-development.apps-crc.testing\",  \"prisma-development.apps-crc.testing\", \"http://172.30.241.100:4466\", 172.30.52.150, \"apollo-backend-development.apps-crc.testing\", \"http://apollo-backend-development.apps-crc.testing\", 172.30.90.125, \"frontend-development.apps-crc.testing\", \"http://frontend-development.apps-crc.testing\", \"http://checkout.stripe.com/\"]"}],"from":{"kind":"ImageStreamTag","name":"nodejs:latest","namespace":"openshift"}},"type":"Source"},"successfulBuildsHistoryLimit":5,"triggers":[{"github":{"secret":"qS64U9bwynToBFUGWNTw"},"type":"GitHub"},{"generic":{"secret":"l0aqQVI6nAdYNpdvOVPy"},"type":"Generic"},{"type":"ConfigChange"},{"imageChange":{"lastTriggeredImageID":"image-registry.openshift-image-registry.svc:5000/openshift/nodejs@sha256:74a3ef2964efc03dfc239da3f09691b720ce54ff4bb47588864adb222133f0fc"},"type":"ImageChange"}]},"status":{"lastVersion":8}}
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: "2020-05-09T15:29:14Z"
+    labels:
+      app: apollo-backend
+    name: apollo-backend
+    namespace: development
+    resourceVersion: "2433913"
+    selfLink: /apis/build.openshift.io/v1/namespaces/development/buildconfigs/apollo-backend
+    uid: d6dc9d34-9209-11ea-a9f7-0a580a8001f6
+  spec:
+    failedBuildsHistoryLimit: 5
+    nodeSelector: null
+    output:
+      to:
+        kind: ImageStreamTag
+        name: apollo-backend:latest
+    postCommit: {}
+    resources: {}
+    runPolicy: Serial
+    source:
+      git:
+        uri: https://github.com/stephmen/ApolloBackend
+      type: Git
+    strategy:
+      sourceStrategy:
+        env:
+        - name: PRISMA_ENDPOINT_Backup
+          value: '"http://172.30.241.100:4466"'
+        - name: PRISMA_SECRET
+          value: '"prisma"'
+        - name: APP_SECRET
+          value: '"prisma"'
+        - name: WHITELIST
+          value: '["http://prisma-development.apps-crc.testing",  "prisma-development.apps-crc.testing",
+            "http://172.30.241.100:4466", 172.30.52.150, "apollo-backend-development.apps-crc.testing",
+            "http://apollo-backend-development.apps-crc.testing", 172.30.90.125, "frontend-development.apps-crc.testing",
+            "http://frontend-development.apps-crc.testing", "http://checkout.stripe.com/"]'
+        - name: PRISMA_ENDPOINT
+          value: '"http://prisma-development.apps-crc.testing"'
+        from:
+          kind: ImageStreamTag
+          name: nodejs:latest
+          namespace: openshift
+      type: Source
+    successfulBuildsHistoryLimit: 5
+    triggers:
+    - github:
+        secret: qS64U9bwynToBFUGWNTw
+      type: GitHub
+    - generic:
+        secret: l0aqQVI6nAdYNpdvOVPy
+      type: Generic
+    - type: ConfigChange
+    - imageChange:
+        lastTriggeredImageID: image-registry.openshift-image-registry.svc:5000/openshift/nodejs@sha256:74a3ef2964efc03dfc239da3f09691b720ce54ff4bb47588864adb222133f0fc
+      type: ImageChange
+  status:
+    lastVersion: 38
+- apiVersion: build.openshift.io/v1
+  kind: BuildConfig
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: "2020-05-07T17:18:32Z"
+    labels:
+      app: frontend
+    name: frontend
+    namespace: development
+    resourceVersion: "2508900"
+    selfLink: /apis/build.openshift.io/v1/namespaces/development/buildconfigs/frontend
+    uid: c704416b-9086-11ea-8022-0a580a800100
+  spec:
+    failedBuildsHistoryLimit: 5
+    nodeSelector: null
+    output:
+      to:
+        kind: ImageStreamTag
+        name: frontend:latest
+    postCommit: {}
+    resources: {}
+    runPolicy: Serial
+    source:
+      git:
+        uri: https://github.com/stephmen/Frontend
+      type: Git
+    strategy:
+      sourceStrategy:
+        from:
+          kind: ImageStreamTag
+          name: nodejs:latest
+          namespace: openshift
+      type: Source
+    successfulBuildsHistoryLimit: 5
+    triggers:
+    - github:
+        secret: g62NcJ3-o5iT6jG1mnaM
+      type: GitHub
+    - generic:
+        secret: Z_V7pK7BDdL7vonSp1Za
+      type: Generic
+    - type: ConfigChange
+    - imageChange:
+        lastTriggeredImageID: image-registry.openshift-image-registry.svc:5000/openshift/nodejs@sha256:74a3ef2964efc03dfc239da3f09691b720ce54ff4bb47588864adb222133f0fc
+      type: ImageChange
+  status:
+    lastVersion: 16
+- apiVersion: build.openshift.io/v1
+  kind: BuildConfig
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: "2020-05-06T01:19:08Z"
+    labels:
+      app: myapp
+    name: myapp
+    namespace: development
+    resourceVersion: "2450527"
+    selfLink: /apis/build.openshift.io/v1/namespaces/development/buildconfigs/myapp
+    uid: 95664add-8f37-11ea-a52a-0a580a800012
+  spec:
+    failedBuildsHistoryLimit: 5
+    nodeSelector: null
+    output:
+      to:
+        kind: ImageStreamTag
+        name: myapp:latest
+    postCommit: {}
+    resources: {}
+    runPolicy: Serial
+    source:
+      git:
+        ref: master
+        uri: https://github.com/stephmen/Frontend.git
+      type: Git
+    strategy:
+      sourceStrategy:
+        from:
+          kind: ImageStreamTag
+          name: nodejs:latest
+          namespace: openshift
+      type: Source
+    successfulBuildsHistoryLimit: 5
+    triggers:
+    - github:
+        secret: av45emRUO4gu2CdBowAn
+      type: GitHub
+    - generic:
+        secret: 32UbOa8WnM7ULRoTgX_1
+      type: Generic
+    - type: ConfigChange
+    - imageChange:
+        lastTriggeredImageID: image-registry.openshift-image-registry.svc:5000/openshift/nodejs@sha256:74a3ef2964efc03dfc239da3f09691b720ce54ff4bb47588864adb222133f0fc
+      type: ImageChange
+  status:
+    lastVersion: 9
+- apiVersion: build.openshift.io/v1
+  kind: Build
+  metadata:
+    annotations:
+      openshift.io/build-config.name: frontend
+      openshift.io/build.number: "16"
+      openshift.io/build.pod-name: frontend-16-build
+    creationTimestamp: "2020-05-13T18:00:29Z"
+    labels:
+      app: frontend
+      buildconfig: frontend
+      openshift.io/build-config.name: frontend
+      openshift.io/build.start-policy: Serial
+    name: frontend-16
+    namespace: development
+    ownerReferences:
+    - apiVersion: build.openshift.io/v1
+      controller: true
+      kind: BuildConfig
+      name: frontend
+      uid: c704416b-9086-11ea-8022-0a580a800100
+    resourceVersion: "2509311"
+    selfLink: /apis/build.openshift.io/v1/namespaces/development/builds/frontend-16
+    uid: a176c370-9543-11ea-8d11-0a580a80000f
+  spec:
+    nodeSelector: null
+    output:
+      pushSecret:
+        name: builder-dockercfg-qprnb
+      to:
+        kind: ImageStreamTag
+        name: frontend:latest
+    postCommit: {}
+    resources: {}
+    revision:
+      git:
+        author:
+          email: stephmen@gmail.com
+          name: stephmen
+        commit: bc89068caa98aa609f30e8e443929d41c16068e6
+        committer:
+          email: stephmen@gmail.com
+          name: stephmen
+        message: testing console.log(process.env.endpoint)
+      type: Git
+    serviceAccount: builder
+    source:
+      git:
+        uri: https://github.com/stephmen/Frontend
+      type: Git
+    strategy:
+      sourceStrategy:
+        from:
+          kind: DockerImage
+          name: image-registry.openshift-image-registry.svc:5000/openshift/nodejs@sha256:74a3ef2964efc03dfc239da3f09691b720ce54ff4bb47588864adb222133f0fc
+        pullSecret:
+          name: builder-dockercfg-qprnb
+      type: Source
+    triggeredBy:
+    - message: Manually triggered
+  status:
+    completionTimestamp: "2020-05-13T18:02:54Z"
+    config:
+      kind: BuildConfig
+      name: frontend
+      namespace: development
+    duration: 145000000000
+    output:
+      to:
+        imageDigest: sha256:6de954aa82a7fb4956400602dbb12ada3a7aa1062b9335ce3ed817418db53551
+    outputDockerImageReference: image-registry.openshift-image-registry.svc:5000/development/frontend:latest
+    phase: Complete
+    stages:
+    - durationMilliseconds: 1027
+      name: FetchInputs
+      startTime: "2020-05-13T18:00:38Z"
+      steps:
+      - durationMilliseconds: 1027
+        name: FetchGitSource
+        startTime: "2020-05-13T18:00:38Z"
+    - durationMilliseconds: 21071
+      name: PullImages
+      startTime: "2020-05-13T18:00:42Z"
+      steps:
+      - durationMilliseconds: 21071
+        name: PullBaseImage
+        startTime: "2020-05-13T18:00:42Z"
+    - durationMilliseconds: 106948
+      name: Build
+      startTime: "2020-05-13T18:01:03Z"
+      steps:
+      - durationMilliseconds: 106948
+        name: DockerBuild
+        startTime: "2020-05-13T18:01:03Z"
+    - durationMilliseconds: 3133
+      name: PushImage
+      startTime: "2020-05-13T18:02:50Z"
+      steps:
+      - durationMilliseconds: 3133
+        name: PushImage
+        startTime: "2020-05-13T18:02:50Z"
+    startTimestamp: "2020-05-13T18:00:29Z"
+- apiVersion: image.openshift.io/v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: "2020-05-09T15:37:39Z"
+    generation: 1
+    labels:
+      app: apollo-backend
+    name: apollo-backend
+    namespace: development
+    resourceVersion: "2434182"
+    selfLink: /apis/image.openshift.io/v1/namespaces/development/imagestreams/apollo-backend
+    uid: 039980f2-920b-11ea-a9f7-0a580a8001f6
+  spec:
+    lookupPolicy:
+      local: false
+  status:
+    dockerImageRepository: image-registry.openshift-image-registry.svc:5000/development/apollo-backend
+    publicDockerImageRepository: default-route-openshift-image-registry.apps-crc.testing/development/apollo-backend
+    tags:
+    - items:
+      - created: "2020-05-13T01:27:41Z"
+        dockerImageReference: image-registry.openshift-image-registry.svc:5000/development/apollo-backend@sha256:83e0d683c0ac0f7cc3f12dcf9746ce92078c23047262d2927fda5efb7f046ae3
+        generation: 1
+        image: sha256:83e0d683c0ac0f7cc3f12dcf9746ce92078c23047262d2927fda5efb7f046ae3
+      - created: "2020-05-13T01:09:14Z"
+        dockerImageReference: image-registry.openshift-image-registry.svc:5000/development/apollo-backend@sha256:5e94666600ec4b3c675ebb542da1e0abb4cdf287178c419d1e4f581a47645334
+        generation: 1
+        image: sha256:5e94666600ec4b3c675ebb542da1e0abb4cdf287178c419d1e4f581a47645334
+      - created: "2020-05-13T00:40:43Z"
+        dockerImageReference: image-registry.openshift-image-registry.svc:5000/development/apollo-backend@sha256:e1fd95a802da4643d5b10170345bd2fd060d6ec4576f55242c403de4c97d9773
+        generation: 1
+        image: sha256:e1fd95a802da4643d5b10170345bd2fd060d6ec4576f55242c403de4c97d9773
+      - created: "2020-05-13T00:29:20Z"
+        dockerImageReference: image-registry.openshift-image-registry.svc:5000/development/apollo-backend@sha256:cc9ff4eee986a27089d659a605f39c1f3c02a459f92e6d9df2bd787deed13b73
+        generation: 1
+        image: sha256:cc9ff4eee986a27089d659a605f39c1f3c02a459f92e6d9df2bd787deed13b73
+      - created: "2020-05-13T00:18:16Z"
+        dockerImageReference: image-registry.openshift-image-registry.svc:5000/development/apollo-backend@sha256:d3437103d5885de907f8c4dfe87a39c171ac074fa5179b672f4531c53962664e
+        generation: 1
+        image: sha256:d3437103d5885de907f8c4dfe87a39c171ac074fa5179b672f4531c53962664e
+      - created: "2020-05-12T22:53:18Z"
+        dockerImageReference: image-registry.openshift-image-registry.svc:5000/development/apollo-backend@sha256:6dfb5840140d26ea94eeef9aa74680074242fb44f0b11c944f56d78f42302cc4
+        generation: 1
+        image: sha256:6dfb5840140d26ea94eeef9aa74680074242fb44f0b11c944f56d78f42302cc4
+      - created: "2020-05-12T22:19:20Z"
+        dockerImageReference: image-registry.openshift-image-registry.svc:5000/development/apollo-backend@sha256:319edd589761275881356bb546d319e63b9b1033aa616e0efaee3a03f2578bf7
+        generation: 1
+        image: sha256:319edd589761275881356bb546d319e63b9b1033aa616e0efaee3a03f2578bf7
+      - created: "2020-05-12T21:24:40Z"
+        dockerImageReference: image-registry.openshift-image-registry.svc:5000/development/apollo-backend@sha256:c8735028bb7a13fcde1294c2e6d38c478ba2feaf231a68f324fdeb84d1e9e609
+        generation: 1
+        image: sha256:c8735028bb7a13fcde1294c2e6d38c478ba2feaf231a68f324fdeb84d1e9e609
+      - created: "2020-05-12T20:37:28Z"
+        dockerImageReference: image-registry.openshift-image-registry.svc:5000/development/apollo-backend@sha256:539fe7d738ab9b11a7b576b10ffad9c79406da27a1ad8719868cbe031941a90b
+        generation: 1
+        image: sha256:539fe7d738ab9b11a7b576b10ffad9c79406da27a1ad8719868cbe031941a90b
+      - created: "2020-05-12T19:00:56Z"
+        dockerImageReference: image-registry.openshift-image-registry.svc:5000/development/apollo-backend@sha256:ad6860fde07fb2333c75fa6d23d82d0978bcad0cffb16822c113d8edf2724751
+        generation: 1
+        image: sha256:ad6860fde07fb2333c75fa6d23d82d0978bcad0cffb16822c113d8edf2724751
+      tag: latest
+- apiVersion: image.openshift.io/v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: "2020-05-07T17:18:32Z"
+    generation: 1
+    labels:
+      app: frontend
+    name: frontend
+    namespace: development
+    resourceVersion: "2509300"
+    selfLink: /apis/image.openshift.io/v1/namespaces/development/imagestreams/frontend
+    uid: c6ffd1aa-9086-11ea-8022-0a580a800100
+  spec:
+    lookupPolicy:
+      local: false
+  status:
+    dockerImageRepository: image-registry.openshift-image-registry.svc:5000/development/frontend
+    publicDockerImageRepository: default-route-openshift-image-registry.apps-crc.testing/development/frontend
+    tags:
+    - items:
+      - created: "2020-05-13T18:02:53Z"
+        dockerImageReference: image-registry.openshift-image-registry.svc:5000/development/frontend@sha256:6de954aa82a7fb4956400602dbb12ada3a7aa1062b9335ce3ed817418db53551
+        generation: 1
+        image: sha256:6de954aa82a7fb4956400602dbb12ada3a7aa1062b9335ce3ed817418db53551
+      - created: "2020-05-13T17:51:23Z"
+        dockerImageReference: image-registry.openshift-image-registry.svc:5000/development/frontend@sha256:bf1debabd53462aa28361e443598427682183def51e6064ae371c33ab817f69e
+        generation: 1
+        image: sha256:bf1debabd53462aa28361e443598427682183def51e6064ae371c33ab817f69e
+      - created: "2020-05-13T15:47:14Z"
+        dockerImageReference: image-registry.openshift-image-registry.svc:5000/development/frontend@sha256:97381452f46ce4217cdd1655a85250acebbc03f3be1e6cd79e93488de5efed7e
+        generation: 1
+        image: sha256:97381452f46ce4217cdd1655a85250acebbc03f3be1e6cd79e93488de5efed7e
+      - created: "2020-05-13T14:42:58Z"
+        dockerImageReference: image-registry.openshift-image-registry.svc:5000/development/frontend@sha256:fdb8db0599301a77ea0283efa3331a5d5bb18b2b538b76421d2276190014b44f
+        generation: 1
+        image: sha256:fdb8db0599301a77ea0283efa3331a5d5bb18b2b538b76421d2276190014b44f
+      - created: "2020-05-13T14:29:16Z"
+        dockerImageReference: image-registry.openshift-image-registry.svc:5000/development/frontend@sha256:7b070e77dfa271e927a39a4d914675627f9a27c9222dab161e26f60472a4d336
+        generation: 1
+        image: sha256:7b070e77dfa271e927a39a4d914675627f9a27c9222dab161e26f60472a4d336
+      - created: "2020-05-13T14:18:44Z"
+        dockerImageReference: image-registry.openshift-image-registry.svc:5000/development/frontend@sha256:d00e075e7162348ae56b3ee4005fc4b5508ca73e6bafddeb579764dd15978dc6
+        generation: 1
+        image: sha256:d00e075e7162348ae56b3ee4005fc4b5508ca73e6bafddeb579764dd15978dc6
+      - created: "2020-05-13T14:08:34Z"
+        dockerImageReference: image-registry.openshift-image-registry.svc:5000/development/frontend@sha256:20cdcc9fda64e3d739c2ca74105c8188c6ddd9845e3e80dcf694696e70eb0f34
+        generation: 1
+        image: sha256:20cdcc9fda64e3d739c2ca74105c8188c6ddd9845e3e80dcf694696e70eb0f34
+      - created: "2020-05-13T13:52:41Z"
+        dockerImageReference: image-registry.openshift-image-registry.svc:5000/development/frontend@sha256:b2c19abe4c4e8530dcff5bd83317de68f904e00154c9c8f219647780b94990a2
+        generation: 1
+        image: sha256:b2c19abe4c4e8530dcff5bd83317de68f904e00154c9c8f219647780b94990a2
+      - created: "2020-05-13T13:33:28Z"
+        dockerImageReference: image-registry.openshift-image-registry.svc:5000/development/frontend@sha256:646c16ce187c889ce1a4e9be4f9bb1705d61bb9db181f632a826c9df4db965e5
+        generation: 1
+        image: sha256:646c16ce187c889ce1a4e9be4f9bb1705d61bb9db181f632a826c9df4db965e5
+      - created: "2020-05-13T02:44:36Z"
+        dockerImageReference: image-registry.openshift-image-registry.svc:5000/development/frontend@sha256:7bce63d96b210b48aaa61300bf585a46ef6617039eaf9d6b224714809d0cf96c
+        generation: 1
+        image: sha256:7bce63d96b210b48aaa61300bf585a46ef6617039eaf9d6b224714809d0cf96c
+      - created: "2020-05-12T14:47:46Z"
+        dockerImageReference: image-registry.openshift-image-registry.svc:5000/development/frontend@sha256:bd7b49f68090a68dd46a8104e02f82c108d44779cf57dfef9d6a28ae72915113
+        generation: 1
+        image: sha256:bd7b49f68090a68dd46a8104e02f82c108d44779cf57dfef9d6a28ae72915113
+      - created: "2020-05-12T01:40:38Z"
+        dockerImageReference: image-registry.openshift-image-registry.svc:5000/development/frontend@sha256:9d9cbc825538fe4ff1ce8ef15646093feab0eeed5546605b50ec1151700832af
+        generation: 1
+        image: sha256:9d9cbc825538fe4ff1ce8ef15646093feab0eeed5546605b50ec1151700832af
+      - created: "2020-05-11T23:35:26Z"
+        dockerImageReference: image-registry.openshift-image-registry.svc:5000/development/frontend@sha256:0849c6d4335a24b5651531c17d0a150b0f0d81b2a607f7ecabe156312cc406dd
+        generation: 1
+        image: sha256:0849c6d4335a24b5651531c17d0a150b0f0d81b2a607f7ecabe156312cc406dd
+      tag: latest
+- apiVersion: image.openshift.io/v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"image.openshift.io/v1","kind":"ImageStream","metadata":{"annotations":{},"creationTimestamp":null,"labels":{"io.kompose.service":"mongo"},"name":"mongo","namespace":"development"},"spec":{"tags":[{"annotations":null,"from":{"kind":"DockerImage","name":"mongo:3.6"},"generation":null,"importPolicy":{},"name":"3.6"}]},"status":{"dockerImageRepository":""}}
+      openshift.io/image.dockerRepositoryCheck: "2020-05-09T02:22:02Z"
+    creationTimestamp: "2020-05-09T02:21:58Z"
+    generation: 2
+    labels:
+      io.kompose.service: mongo
+    name: mongo
+    namespace: development
+    resourceVersion: "1991510"
+    selfLink: /apis/image.openshift.io/v1/namespaces/development/imagestreams/mongo
+    uid: dbb63c7b-919b-11ea-9b91-0a580a80019f
+  spec:
+    lookupPolicy:
+      local: false
+    tags:
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: mongo:3.6
+      generation: 2
+      importPolicy: {}
+      name: "3.6"
+      referencePolicy:
+        type: Source
+  status:
+    dockerImageRepository: image-registry.openshift-image-registry.svc:5000/development/mongo
+    publicDockerImageRepository: default-route-openshift-image-registry.apps-crc.testing/development/mongo
+    tags:
+    - items:
+      - created: "2020-05-09T02:22:02Z"
+        dockerImageReference: mongo@sha256:685aba1be7c90b6b431b0d4afb569b41e133771a91bbae0898fd69f02da86832
+        generation: 2
+        image: sha256:685aba1be7c90b6b431b0d4afb569b41e133771a91bbae0898fd69f02da86832
+      tag: "3.6"
+- apiVersion: image.openshift.io/v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: "2020-05-06T01:19:08Z"
+    generation: 15
+    labels:
+      app: myapp
+    name: myapp
+    namespace: development
+    resourceVersion: "2451219"
+    selfLink: /apis/image.openshift.io/v1/namespaces/development/imagestreams/myapp
+    uid: 955d4e16-8f37-11ea-a52a-0a580a800012
+  spec:
+    lookupPolicy:
+      local: false
+    tags:
+    - annotations: null
+      from:
+        kind: ImageStreamImage
+        name: myapp@sha256:d43835dd3f550809fe53cdb618f8216c2867eb509b3d546d96b2fe493b42c42a
+        namespace: development
+      generation: 14
+      importPolicy: {}
+      name: promotePRD
+      referencePolicy:
+        type: Source
+    - annotations: null
+      from:
+        kind: ImageStreamImage
+        name: myapp@sha256:87dac138c99a0b1abadce7e4b3e069e7206ae449832722ca985ca210e2d31627
+        namespace: development
+      generation: 15
+      importPolicy: {}
+      name: promoteQA
+      referencePolicy:
+        type: Source
+  status:
+    dockerImageRepository: image-registry.openshift-image-registry.svc:5000/development/myapp
+    publicDockerImageRepository: default-route-openshift-image-registry.apps-crc.testing/development/myapp
+    tags:
+    - items:
+      - created: "2020-05-13T03:15:37Z"
+        dockerImageReference: image-registry.openshift-image-registry.svc:5000/development/myapp@sha256:8eb1782cdfe7f65aaedd4a29c58b4674487436e3f54eff74bd40f8d995d61f2e
+        generation: 15
+        image: sha256:8eb1782cdfe7f65aaedd4a29c58b4674487436e3f54eff74bd40f8d995d61f2e
+      - created: "2020-05-07T18:40:11Z"
+        dockerImageReference: image-registry.openshift-image-registry.svc:5000/development/myapp@sha256:87dac138c99a0b1abadce7e4b3e069e7206ae449832722ca985ca210e2d31627
+        generation: 14
+        image: sha256:87dac138c99a0b1abadce7e4b3e069e7206ae449832722ca985ca210e2d31627
+      - created: "2020-05-07T15:33:42Z"
+        dockerImageReference: image-registry.openshift-image-registry.svc:5000/development/myapp@sha256:d43835dd3f550809fe53cdb618f8216c2867eb509b3d546d96b2fe493b42c42a
+        generation: 12
+        image: sha256:d43835dd3f550809fe53cdb618f8216c2867eb509b3d546d96b2fe493b42c42a
+      - created: "2020-05-07T02:10:48Z"
+        dockerImageReference: image-registry.openshift-image-registry.svc:5000/development/myapp@sha256:92b165700d5a8df84a6395bbf85f525d79a787802ece31a96ea671652fd3cc89
+        generation: 10
+        image: sha256:92b165700d5a8df84a6395bbf85f525d79a787802ece31a96ea671652fd3cc89
+      - created: "2020-05-06T12:39:45Z"
+        dockerImageReference: image-registry.openshift-image-registry.svc:5000/development/myapp@sha256:8e7840eb742777ab7f5d26af84e165bc429c4524be432d67d43fa6ddbb8128a7
+        generation: 8
+        image: sha256:8e7840eb742777ab7f5d26af84e165bc429c4524be432d67d43fa6ddbb8128a7
+      tag: latest
+    - items:
+      - created: "2020-05-07T18:39:03Z"
+        dockerImageReference: image-registry.openshift-image-registry.svc:5000/development/myapp@sha256:d43835dd3f550809fe53cdb618f8216c2867eb509b3d546d96b2fe493b42c42a
+        generation: 14
+        image: sha256:d43835dd3f550809fe53cdb618f8216c2867eb509b3d546d96b2fe493b42c42a
+      - created: "2020-05-07T15:21:33Z"
+        dockerImageReference: image-registry.openshift-image-registry.svc:5000/development/myapp@sha256:92b165700d5a8df84a6395bbf85f525d79a787802ece31a96ea671652fd3cc89
+        generation: 12
+        image: sha256:92b165700d5a8df84a6395bbf85f525d79a787802ece31a96ea671652fd3cc89
+      - created: "2020-05-07T02:10:43Z"
+        dockerImageReference: image-registry.openshift-image-registry.svc:5000/development/myapp@sha256:8e7840eb742777ab7f5d26af84e165bc429c4524be432d67d43fa6ddbb8128a7
+        generation: 10
+        image: sha256:8e7840eb742777ab7f5d26af84e165bc429c4524be432d67d43fa6ddbb8128a7
+      tag: promotePRD
+    - items:
+      - created: "2020-05-13T03:11:47Z"
+        dockerImageReference: image-registry.openshift-image-registry.svc:5000/development/myapp@sha256:87dac138c99a0b1abadce7e4b3e069e7206ae449832722ca985ca210e2d31627
+        generation: 15
+        image: sha256:87dac138c99a0b1abadce7e4b3e069e7206ae449832722ca985ca210e2d31627
+      - created: "2020-05-07T18:36:26Z"
+        dockerImageReference: image-registry.openshift-image-registry.svc:5000/development/myapp@sha256:d43835dd3f550809fe53cdb618f8216c2867eb509b3d546d96b2fe493b42c42a
+        generation: 13
+        image: sha256:d43835dd3f550809fe53cdb618f8216c2867eb509b3d546d96b2fe493b42c42a
+      - created: "2020-05-07T15:19:21Z"
+        dockerImageReference: image-registry.openshift-image-registry.svc:5000/development/myapp@sha256:92b165700d5a8df84a6395bbf85f525d79a787802ece31a96ea671652fd3cc89
+        generation: 11
+        image: sha256:92b165700d5a8df84a6395bbf85f525d79a787802ece31a96ea671652fd3cc89
+      - created: "2020-05-07T02:07:00Z"
+        dockerImageReference: image-registry.openshift-image-registry.svc:5000/development/myapp@sha256:8e7840eb742777ab7f5d26af84e165bc429c4524be432d67d43fa6ddbb8128a7
+        generation: 9
+        image: sha256:8e7840eb742777ab7f5d26af84e165bc429c4524be432d67d43fa6ddbb8128a7
+      tag: promoteQA
+- apiVersion: image.openshift.io/v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"image.openshift.io/v1","kind":"ImageStream","metadata":{"annotations":{},"creationTimestamp":null,"labels":{"io.kompose.service":"prisma"},"name":"prisma","namespace":"development"},"spec":{"tags":[{"annotations":null,"from":{"kind":"DockerImage","name":"prismagraphql/prisma:1.34"},"generation":null,"importPolicy":{},"name":"1.34"}]},"status":{"dockerImageRepository":""}}
+      openshift.io/image.dockerRepositoryCheck: "2020-05-09T02:38:38Z"
+    creationTimestamp: "2020-05-09T02:38:37Z"
+    generation: 2
+    labels:
+      io.kompose.service: prisma
+    name: prisma
+    namespace: development
+    resourceVersion: "1994150"
+    selfLink: /apis/image.openshift.io/v1/namespaces/development/imagestreams/prisma
+    uid: 2f91e06b-919e-11ea-9b91-0a580a80019f
+  spec:
+    lookupPolicy:
+      local: false
+    tags:
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: prismagraphql/prisma:1.34
+      generation: 2
+      importPolicy: {}
+      name: "1.34"
+      referencePolicy:
+        type: Source
+  status:
+    dockerImageRepository: image-registry.openshift-image-registry.svc:5000/development/prisma
+    publicDockerImageRepository: default-route-openshift-image-registry.apps-crc.testing/development/prisma
+    tags:
+    - items:
+      - created: "2020-05-09T02:38:38Z"
+        dockerImageReference: prismagraphql/prisma@sha256:de3e5a9d44c4e0cd24af9a9d435b8893a11a494d408d9f610fcfccfee1f99d28
+        generation: 2
+        image: sha256:de3e5a9d44c4e0cd24af9a9d435b8893a11a494d408d9f610fcfccfee1f99d28
+      tag: "1.34"
+- apiVersion: route.openshift.io/v1
+  kind: Route
+  metadata:
+    annotations:
+      openshift.io/host.generated: "true"
+    creationTimestamp: "2020-05-09T20:23:33Z"
+    labels:
+      app: apollo-backend
+    name: apollo-backend
+    namespace: development
+    resourceVersion: "2085423"
+    selfLink: /apis/route.openshift.io/v1/namespaces/development/routes/apollo-backend
+    uid: f486d8c8-9232-11ea-a9f7-0a580a8001f6
+  spec:
+    host: apollo-backend-development.apps-crc.testing
+    port:
+      targetPort: 4444
+    subdomain: ""
+    to:
+      kind: Service
+      name: apollo-backend
+      weight: 100
+    wildcardPolicy: None
+  status:
+    ingress:
+    - conditions:
+      - lastTransitionTime: "2020-05-09T20:23:33Z"
+        status: "True"
+        type: Admitted
+      host: apollo-backend-development.apps-crc.testing
+      routerCanonicalHostname: apps-crc.testing
+      routerName: default
+      wildcardPolicy: None
+- apiVersion: route.openshift.io/v1
+  kind: Route
+  metadata:
+    annotations:
+      openshift.io/host.generated: "true"
+    creationTimestamp: "2020-05-07T17:19:48Z"
+    labels:
+      app: frontend
+    name: frontend
+    namespace: development
+    resourceVersion: "1993354"
+    selfLink: /apis/route.openshift.io/v1/namespaces/development/routes/frontend
+    uid: f3f0674f-9086-11ea-8022-0a580a800100
+  spec:
+    host: frontend-development.apps-crc.testing
+    port:
+      targetPort: 7777-tcp
+    subdomain: ""
+    to:
+      kind: Service
+      name: frontend
+      weight: 100
+    wildcardPolicy: None
+  status:
+    ingress:
+    - conditions:
+      - lastTransitionTime: "2020-05-07T17:19:48Z"
+        status: "True"
+        type: Admitted
+      host: frontend-development.apps-crc.testing
+      routerCanonicalHostname: apps-crc.testing
+      routerName: default
+      wildcardPolicy: None
+- apiVersion: route.openshift.io/v1
+  kind: Route
+  metadata:
+    annotations:
+      openshift.io/host.generated: "true"
+    creationTimestamp: "2020-05-11T23:26:57Z"
+    labels:
+      io.kompose.service: mongo
+    name: mongo
+    namespace: development
+    resourceVersion: "2268495"
+    selfLink: /apis/route.openshift.io/v1/namespaces/development/routes/mongo
+    uid: e7d90f3d-93de-11ea-9970-0a580a800132
+  spec:
+    host: mongo-development.apps-crc.testing
+    port:
+      targetPort: 27017
+    subdomain: ""
+    to:
+      kind: Service
+      name: mongo
+      weight: 100
+    wildcardPolicy: None
+  status:
+    ingress:
+    - conditions:
+      - lastTransitionTime: "2020-05-11T23:26:57Z"
+        status: "True"
+        type: Admitted
+      host: mongo-development.apps-crc.testing
+      routerCanonicalHostname: apps-crc.testing
+      routerName: default
+      wildcardPolicy: None
+- apiVersion: route.openshift.io/v1
+  kind: Route
+  metadata:
+    annotations:
+      openshift.io/host.generated: "true"
+    creationTimestamp: "2020-05-06T01:20:08Z"
+    labels:
+      app: myapp
+    name: myapp
+    namespace: development
+    resourceVersion: "1569418"
+    selfLink: /apis/route.openshift.io/v1/namespaces/development/routes/myapp
+    uid: b929f721-8f37-11ea-a52a-0a580a800012
+  spec:
+    host: myapp-development.apps-crc.testing
+    port:
+      targetPort: 7777-tcp
+    subdomain: ""
+    to:
+      kind: Service
+      name: myapp
+      weight: 100
+    wildcardPolicy: None
+  status:
+    ingress:
+    - conditions:
+      - lastTransitionTime: "2020-05-06T01:20:08Z"
+        status: "True"
+        type: Admitted
+      host: myapp-development.apps-crc.testing
+      routerCanonicalHostname: apps-crc.testing
+      routerName: default
+      wildcardPolicy: None
+- apiVersion: route.openshift.io/v1
+  kind: Route
+  metadata:
+    annotations:
+      openshift.io/host.generated: "true"
+    creationTimestamp: "2020-05-09T03:28:39Z"
+    labels:
+      io.kompose.service: prisma
+    name: prisma
+    namespace: development
+    resourceVersion: "2002003"
+    selfLink: /apis/route.openshift.io/v1/namespaces/development/routes/prisma
+    uid: 2cc8c5cd-91a5-11ea-9b91-0a580a80019f
+  spec:
+    host: prisma-development.apps-crc.testing
+    port:
+      targetPort: 4466
+    subdomain: ""
+    to:
+      kind: Service
+      name: prisma
+      weight: 100
+    wildcardPolicy: None
+  status:
+    ingress:
+    - conditions:
+      - lastTransitionTime: "2020-05-09T03:28:39Z"
+        status: "True"
+        type: Admitted
+      host: prisma-development.apps-crc.testing
+      routerCanonicalHostname: apps-crc.testing
+      routerName: default
+      wildcardPolicy: None
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""

@@ -1,0 +1,13 @@
+kubectl apply -f namespace.yml
+kubectl apply -f mongo-persistentvolumeclaim
+kubectl apply -f mongo-claim1-persistentvolumeclaim
+kubectl apply -f mongo-claim2-persistentvolumeclaim
+kubectl apply -f mongo-deploymentconfig.yaml --validate=false 
+kubectl apply -f mongo-service.yaml
+
+
+
+kompose --file docker-compose.yml --provider openshift up
+
+kompose --file docker-compose.yaml --provider openshift up
+
