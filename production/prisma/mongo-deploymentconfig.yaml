@@ -34,16 +34,16 @@ spec:
         resources: {}
         volumeMounts:
         - mountPath: /var/lib/mongo
-          name: mongo
+          name: mongo-production
         - mountPath: /data/db
-          name: mongo-claim1
+          name: mongo-claim1--production
         - mountPath: /data/configdb
-          name: mongo-claim2
+          name: mongo-claim2--production
       restartPolicy: Always
       volumes:
-      - name: mongo
+      - name: mongo-production
         persistentVolumeClaim:
-          claimName: mongo
+          claimName: mongo-production
       - name: mongo-claim1-production
         persistentVolumeClaim:
           claimName: mongo-claim1-production
