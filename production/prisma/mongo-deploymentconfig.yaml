@@ -36,9 +36,9 @@ spec:
         - mountPath: /var/lib/mongo
           name: mongo-production
         - mountPath: /data/db
-          name: mongo-claim1--production
+          name: mongo-claim1-production
         - mountPath: /data/configdb
-          name: mongo-claim2--production
+          name: mongo-claim2-production
       restartPolicy: Always
       volumes:
       - name: mongo-production
